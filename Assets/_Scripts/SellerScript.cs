@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SellerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    void SellItem(Item item)
     {
-        
+        Debug.Log($"Sold {item.gameObject.name} for {item.GetSellValue()}$ !");
+        item.DespawnObject();
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        Item item;
+        if(other.gameObject.TryGetComponent<Item>(out item))
+        SellItem(item);
     }
 }
