@@ -8,7 +8,7 @@ public class ConeyorScript : MonoBehaviour
         Rigidbody rigidbody;
         if(other.gameObject.TryGetComponent<Rigidbody>(out rigidbody))
         {
-            rigidbody.velocity = transform.forward * speed * Time.deltaTime;
+            rigidbody.velocity = speed * Time.deltaTime * transform.forward;
         }
     }
 }
