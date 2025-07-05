@@ -1,8 +1,21 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour
 {
+    public static BuildingSystem Instance;
+
+    private void Awake()
+    {
+        if (Instance && Instance != this)
+            Destroy(gameObject);
+        else Instance = this;
+    }
+
+    public static List<Vector3> OccupiedPositions = new List<Vector3>();
+
+
     [Header("Raycast")]
     [SerializeField] Camera cam;
     [SerializeField] LayerMask raycastLayerMask;
@@ -24,6 +37,10 @@ public class BuildingSystem : MonoBehaviour
         if(!cam)
             cam = Camera.main;
         preview = CreatePreview(machine.BuildModel);
+        foreach (Transform child in buildParent)
+        {
+            OccupiedPositions.Add(child.position);
+        }
     }
     private void Update()
     {
@@ -35,7 +52,11 @@ public class BuildingSystem : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(machine.BuildPrefab, preview.transform.position,preview.transform.rotation,buildParent);
+            if (!OccupiedPositions.Contains(preview.transform.position))
+            {
+                Instantiate(machine.BuildPrefab, preview.transform.position,preview.transform.rotation,buildParent);
+                OccupiedPositions.Add(preview.transform.position);
+            }
         }
     }
 

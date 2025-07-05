@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 642348965}
   - component: {fileID: 642348964}
   - component: {fileID: 642348963}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 115598991}
@@ -815,7 +815,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   range: 100
   buildParent: {fileID: 115598991}
   gridSize: 0.5
@@ -973,7 +973,7 @@ GameObject:
   - component: {fileID: 1693827511}
   - component: {fileID: 1693827510}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Player HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,6 +992,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1984473624}
+  - {fileID: 2105097476}
   m_Father: {fileID: 1678388643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1357,6 +1358,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2105097475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105097476}
+  - component: {fileID: 2105097478}
+  - component: {fileID: 2105097477}
+  m_Layer: 5
+  m_Name: Crosshair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2105097476
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105097475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1693827509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2105097477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105097475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2105097478
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105097475}
+  m_CullTransparentMesh: 1
 --- !u!4 &2122875600 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6295477860459279587, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
@@ -1492,6 +1568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 115598991}
     m_Modifications:
+    - target: {fileID: 2423941663733584773, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b68062f94097dc844bbcbec98b559d56, type: 2}
     - target: {fileID: 5312776940690947406, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

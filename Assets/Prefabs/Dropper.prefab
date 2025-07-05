@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6295477860459279587}
   - component: {fileID: 7455870470069524717}
-  - component: {fileID: 3919942673977204142}
+  - component: {fileID: 4641342729416106031}
   m_Layer: 0
   m_Name: Dropper
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6195979352382304801}
-  - {fileID: 1627864699393500928}
+  - {fileID: 1316708281733844625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7455870470069524717
@@ -50,8 +50,8 @@ MonoBehaviour:
   itemGO: {fileID: 1347278087823679329, guid: 3b8c0787a46421a4fbce30b26f0f5c72, type: 3}
   spawnerT: {fileID: 6195979352382304801}
   dropTime: 5
---- !u!65 &3919942673977204142
-BoxCollider:
+--- !u!64 &4641342729416106031
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -68,9 +68,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 0.5}
-  m_Center: {x: 0, y: 0.5, z: -0.8}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2959467708922500008, guid: ff03cbaa8be88a9498dd59612f54bfb4, type: 3}
 --- !u!1 &5989414082806293633
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,13 +97,13 @@ Transform:
   m_GameObject: {fileID: 5989414082806293633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6295477860459279587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8545592741103783408
+--- !u!1001 &103473287368618221
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -110,57 +111,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6295477860459279587}
     m_Modifications:
-    - target: {fileID: 340478332416265118, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
-      propertyPath: m_Name
-      value: Dropper Model
-      objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
+    - target: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756878776025146566, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
+      propertyPath: m_Name
+      value: DropperTempModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
---- !u!4 &1627864699393500928 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
+--- !u!4 &1316708281733844625 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6921853423735974640, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
-  m_PrefabInstance: {fileID: 8545592741103783408}
+  m_CorrespondingSourceObject: {fileID: 1381056271621734012, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
+  m_PrefabInstance: {fileID: 103473287368618221}
   m_PrefabAsset: {fileID: 0}
