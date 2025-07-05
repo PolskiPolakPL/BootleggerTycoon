@@ -817,7 +817,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   range: 100
-  targetMachine: {fileID: 11400000, guid: 8ab03ffa727c2f342ad9adabd21327cb, type: 2}
+  buildParent: {fileID: 115598991}
+  gridSize: 0.5
+  machine: {fileID: 11400000, guid: 8ab03ffa727c2f342ad9adabd21327cb, type: 2}
+  previewOpacity: 0.5
 --- !u!1 &1491160185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1492,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 115598991}
     m_Modifications:
+    - target: {fileID: 5312776940690947406, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a90ef4a5d9c5041b411a4c6704c476, type: 2}
     - target: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
       propertyPath: m_Name
       value: Dropper
@@ -1533,6 +1540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7173374690330054737, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a90ef4a5d9c5041b411a4c6704c476, type: 2}
     - target: {fileID: 7455870470069524717, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
       propertyPath: itemGO
       value: 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
   m_Name: Dropper
   m_EditorClassIdentifier: 
-  Machine: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
-  Preview: {fileID: 3607943649676840157, guid: 0fe59781252ae7049bef584f1c91dea5, type: 3}
+  MachinePrefab: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+  MachineModel: {fileID: 340478332416265118, guid: 22111a8418cf63441bbf303f2c1bc6d8, type: 3}
   BuildingCost: 50
+  SelliValue: 50
