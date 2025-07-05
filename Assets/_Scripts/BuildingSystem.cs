@@ -6,15 +6,6 @@ public class BuildingSystem : MonoBehaviour
 {
     public static BuildingSystem Instance;
 
-    private void Awake()
-    {
-        if (Instance && Instance != this)
-            Destroy(gameObject);
-        else Instance = this;
-    }
-
-    public static List<Vector3> OccupiedPositions = new List<Vector3>();
-
 
     [Header("Raycast")]
     [SerializeField] Camera cam;
@@ -24,43 +15,32 @@ public class BuildingSystem : MonoBehaviour
     [Header("Grid Building System")]
     [SerializeField] Transform buildParent;
     [SerializeField] float gridSize = 1;
-    [SerializeField] BuildObject machine;
     [SerializeField][Range(0, 1)] float previewOpacity = 0.5f;
-
+    List<Vector3> occupiedPositions = new List<Vector3>();
 
     Ray ray;
     RaycastHit hit;
-    GameObject preview;
 
-    private void Start()
+    private void Awake()
     {
+
+        //Singleton
+        if (Instance && Instance != this)
+            Destroy(gameObject);
+        else Instance = this;
+
+        //Camera
         if(!cam)
-            cam = Camera.main;
-        preview = CreatePreview(machine.BuildModel);
-        foreach (Transform child in buildParent)
-        {
-            OccupiedPositions.Add(child.position);
-        }
-    }
-    private void Update()
-    {
-        RenderPreview();
+            cam=Camera.main;
 
-        if (Input.GetKeyDown(KeyCode.R))
+        //Add existing positions to list
+        foreach (Transform child in BuildingSystem.Instance.buildParent)
         {
-            preview.transform.Rotate(new Vector3(0,45,0));
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!OccupiedPositions.Contains(preview.transform.position))
-            {
-                Instantiate(machine.BuildPrefab, preview.transform.position,preview.transform.rotation,buildParent);
-                OccupiedPositions.Add(preview.transform.position);
-            }
+            BuildingSystem.Instance.occupiedPositions.Add(child.position);
         }
     }
 
-    void RenderPreview()
+    public void RenderPreview(GameObject previewGO)
     {
         ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, range, raycastLayerMask))
@@ -71,23 +51,33 @@ public class BuildingSystem : MonoBehaviour
                 Mathf.Round(hitPoint.y / gridSize) * gridSize,
                 Mathf.Round(hitPoint.z / gridSize) * gridSize
                 );
-            preview.transform.position = newPos;
-            if (!preview.activeInHierarchy)
+            previewGO.transform.position = newPos;
+            if (!previewGO.activeInHierarchy)
             {
-                preview.SetActive(true);
+                previewGO.SetActive(true);
             }
         }
         else
         {
-            preview.SetActive(false);
+            previewGO.SetActive(false);
         }
     }
 
-    GameObject CreatePreview(GameObject target)
+    public void PlaceObject(BuildObject target, GameObject previewGO)
     {
-        GameObject obj = Instantiate(target);
-        obj.layer = LayerMask.NameToLayer("Preview");
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        if (!occupiedPositions.Contains(previewGO.transform.position))
+        {
+            Transform previewT = previewGO.transform;
+            Instantiate(target.BuildPrefab, previewT.position, previewT.rotation, BuildingSystem.Instance.buildParent);
+            occupiedPositions.Add(previewT.position);
+        }
+    }
+
+    public GameObject CreatePreview(BuildObject target)
+    {
+        GameObject previewGO = Instantiate(target.BuildModel);
+        previewGO.layer = LayerMask.NameToLayer("Preview");
+        Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
         Material mat;
         Color color;
         foreach (Renderer renderer in renderers)
@@ -106,6 +96,8 @@ public class BuildingSystem : MonoBehaviour
             mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
             mat.renderQueue = 3000;
         }
-        return obj;
+        return previewGO;
     }
+
+
 }

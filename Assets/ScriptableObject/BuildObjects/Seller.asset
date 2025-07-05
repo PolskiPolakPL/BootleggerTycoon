@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
-  m_Name: Dropper
+  m_Name: Seller
   m_EditorClassIdentifier: 
-  BuildPrefab: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
-  BuildModel: {fileID: 1756878776025146566, guid: a5a5cfaddf97b5c4b8bb5a2a0fda1c51, type: 3}
-  BuildingCost: 50
+  BuildPrefab: {fileID: 8446951979300456100, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
+  BuildModel: {fileID: 2663167406076499340, guid: 714d7a6fd8528e84cb576bc15f57dadb, type: 3}
+  BuildingCost: 0
   SellValue: 0
