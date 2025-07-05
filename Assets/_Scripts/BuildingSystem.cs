@@ -20,6 +20,7 @@ public class BuildingSystem : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
+    GameObject previewGO;
 
     private void Awake()
     {
@@ -38,9 +39,43 @@ public class BuildingSystem : MonoBehaviour
         {
             BuildingSystem.Instance.occupiedPositions.Add(child.position);
         }
+
     }
 
-    public void RenderPreview(GameObject previewGO)
+    public void RotateObject(float angle)
+    {
+        previewGO.transform.Rotate(new Vector3(0, angle, 0));
+    }
+
+    public void ChangeTargetObject(BuildObject newTarget)
+    {
+        if (previewGO)
+        {
+            Destroy(previewGO);
+            previewGO = null;
+        }
+        CreatePreview(newTarget);
+    }
+
+    public void EnterBuildMode()
+    {
+        if (previewGO)
+        {
+            previewGO.SetActive(true);
+        }
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void ExitBuildMode()
+    {
+        if (previewGO)
+        {
+            previewGO.SetActive(false);
+        }
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    public void RenderPreview()
     {
         ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, range, raycastLayerMask))
@@ -63,7 +98,7 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    public void PlaceObject(BuildObject target, GameObject previewGO)
+    public void PlaceObject(BuildObject target)
     {
         if (!occupiedPositions.Contains(previewGO.transform.position))
         {
@@ -73,9 +108,9 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    public GameObject CreatePreview(BuildObject target)
+    public void CreatePreview(BuildObject target)
     {
-        GameObject previewGO = Instantiate(target.BuildModel);
+        previewGO = Instantiate(target.BuildModel);
         previewGO.layer = LayerMask.NameToLayer("Preview");
         Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
         Material mat;
@@ -96,7 +131,6 @@ public class BuildingSystem : MonoBehaviour
             mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
             mat.renderQueue = 3000;
         }
-        return previewGO;
     }
 
 
