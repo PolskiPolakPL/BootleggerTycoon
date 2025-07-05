@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4117881888420310204}
   - component: {fileID: 7701477248787498271}
   - component: {fileID: -5074878909012193200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Conveyor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 3224034365981865660}
   - component: {fileID: 9192374387403314991}
   - component: {fileID: 1144336533232149141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
