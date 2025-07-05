@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemGO: {fileID: 0}
   spawnerT: {fileID: 6195979352382304801}
-  dropTime: 1
+  dropTime: 5
 --- !u!1 &5989414082806293633
 GameObject:
   m_ObjectHideFlags: 0

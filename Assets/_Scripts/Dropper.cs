@@ -13,6 +13,7 @@ public class Dropper : MonoBehaviour
     {
         timer = new Timer(dropTime);
         timer.OnTimerElapsed += DropItem;
+        timer.Tick(Random.Range(0, dropTime));
     }
 
     void DropItem()

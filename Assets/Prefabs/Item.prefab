@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSpan: 60
-  sellValue: 0
+  sellValue: 5
 --- !u!65 &5778495625727171931
 BoxCollider:
   m_ObjectHideFlags: 0
