@@ -10,23 +10,15 @@ public class InputManager : MonoBehaviour
         else Instance = this;
     }
 
-    [SerializeField] KeyCode Interaction = KeyCode.F;
-    [SerializeField] KeyCode BuildModeKey = KeyCode.B;
+    //[SerializeField] KeyCode Interaction = KeyCode.F;
+    [SerializeField] KeyCode BuildKey = KeyCode.B;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(BuildModeKey))
+        if (Input.GetKeyDown(BuildKey))
         {
-            bool isBuildModeActive = BuildingSystem.Instance.transform.GetChild(0).gameObject.activeInHierarchy;
-            if (isBuildModeActive)
-            {
-                BuildingSystem.Instance.ExitBuildMode();
-            }
-            else
-            {
-                BuildingSystem.Instance.EnterBuildMode();
-            }
+            BuilderManager.Instance.SwitchBuilderView();
         }
     }
 }

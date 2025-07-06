@@ -5,7 +5,8 @@ public class SellerScript : MonoBehaviour
 {
     void SellItem(Item item)
     {
-        GameManager.Instance.Player.GainMoney(item.GetSellValue());
+        if(GameManager.Instance)
+            GameManager.Instance.Player.GainMoney(item.GetSellValue());
         Debug.Log($"Sold {item.gameObject.name} for {item.GetSellValue()}$ !");
         item.DespawnObject();
     }

@@ -1,26 +1,34 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class BuildingSystem : MonoBehaviour
+[RequireComponent(typeof(BuildingScript))]
+public class BuilderManager : MonoBehaviour
 {
-    public static BuildingSystem Instance;
+    public static BuilderManager Instance;
 
 
     [Header("Raycast")]
-    [SerializeField] Camera cam;
     [SerializeField] LayerMask raycastLayerMask;
     [SerializeField] float range=100;
-
-    [Header("Grid Building System")]
-    [SerializeField] Transform buildParent;
-    [SerializeField] float gridSize = 1;
-    [SerializeField][Range(0, 1)] float previewOpacity = 0.5f;
-    List<Vector3> occupiedPositions = new List<Vector3>();
-
+    Camera cam;
     Ray ray;
     RaycastHit hit;
     GameObject previewGO;
+
+    [Header("Grid System")]
+    [SerializeField] Transform buildParent;
+    [SerializeField] float gridSize = 1;
+    List<Vector3> occupiedPositions = new List<Vector3>();
+
+    [Header("Building System")]
+    [SerializeField] GameObject buildView;
+    [SerializeField][Range(0, 1)] float previewOpacity = 0.5f;
+    BuildingScript buildingScript;
+    public UnityEvent OnBuilderViewEnter;
+    public UnityEvent OnBuilderViewEnd;
+
 
     private void Awake()
     {
@@ -35,48 +43,47 @@ public class BuildingSystem : MonoBehaviour
             cam=Camera.main;
 
         //Add existing positions to list
-        foreach (Transform child in BuildingSystem.Instance.buildParent)
+        foreach (Transform child in BuilderManager.Instance.buildParent)
         {
-            BuildingSystem.Instance.occupiedPositions.Add(child.position);
+            BuilderManager.Instance.occupiedPositions.Add(child.position);
         }
 
+        buildingScript = GetComponent<BuildingScript>();
+    }
+
+    public void SwitchBuilderView()
+    {
+        if (buildView.activeInHierarchy)// BuilderView OFF
+        {
+            OnBuilderViewEnd?.Invoke();
+            DestroyPreview();
+            buildingScript.enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else // BuilderView ON
+        {
+            OnBuilderViewEnter?.Invoke();
+            buildingScript.enabled = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+    }
+
+    public void DestroyPreview()
+    {
+        if(previewGO)
+            Destroy(previewGO);
     }
 
     public void RotateObject(float angle)
     {
-        previewGO.transform.Rotate(new Vector3(0, angle, 0));
-    }
-
-    public void ChangeTargetObject(BuildObject newTarget)
-    {
-        if (previewGO)
-        {
-            Destroy(previewGO);
-            previewGO = null;
-        }
-        CreatePreview(newTarget);
-    }
-
-    public void EnterBuildMode()
-    {
-        if (previewGO)
-        {
-            previewGO.SetActive(true);
-        }
-        transform.GetChild(0).gameObject.SetActive(true);
-    }
-
-    public void ExitBuildMode()
-    {
-        if (previewGO)
-        {
-            previewGO.SetActive(false);
-        }
-        transform.GetChild(0).gameObject.SetActive(false);
+        if(previewGO)
+            previewGO.transform.Rotate(new Vector3(0, angle, 0));
     }
 
     public void RenderPreview()
     {
+        if (!previewGO)
+            return;
         ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, range, raycastLayerMask))
         {
@@ -100,17 +107,20 @@ public class BuildingSystem : MonoBehaviour
 
     public void PlaceObject(BuildObject target)
     {
+        if(!previewGO) return;
         if (!occupiedPositions.Contains(previewGO.transform.position))
         {
             Transform previewT = previewGO.transform;
-            Instantiate(target.BuildPrefab, previewT.position, previewT.rotation, BuildingSystem.Instance.buildParent);
+            Instantiate(target.BuildPrefab, previewT.position, previewT.rotation, BuilderManager.Instance.buildParent);
             occupiedPositions.Add(previewT.position);
         }
     }
 
     public void CreatePreview(BuildObject target)
     {
-        previewGO = Instantiate(target.BuildModel);
+        if(previewGO)
+            Destroy(previewGO);
+        previewGO = Instantiate(target.BuildModel, transform);
         previewGO.layer = LayerMask.NameToLayer("Preview");
         Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
         Material mat;

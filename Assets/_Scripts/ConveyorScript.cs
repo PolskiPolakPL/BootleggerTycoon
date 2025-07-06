@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ConeyorScript : MonoBehaviour
+public class ConveyorScript : MonoBehaviour
 {
     [SerializeField] float speed = 30;
     private void OnCollisionStay(Collision other)
