@@ -16,7 +16,7 @@ public class BuildingScript : MonoBehaviour
         {
             BuildingSystem.Instance.RotateObject(45);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             BuildingSystem.Instance.PlaceObject(targetObject);
         }
