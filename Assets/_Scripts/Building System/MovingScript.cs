@@ -24,8 +24,26 @@ public class MovingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            BuilderManager.Instance.RotateObject(45);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            BuilderManager.Instance.RotateObject(-45);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            BuilderManager.Instance.DestroyPreview();
+            OnBuildModeExit?.Invoke();
+            BuilderManager.Instance.ActivateBuilding(false);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            //zrobiæ bool czy podnios³em przedmiot,
+            //jeœli tak to zrobiæ logikê do stawiania,
+            //jesli nie to logikê do podnoszenia
             PickUpStructure();
         }
     }

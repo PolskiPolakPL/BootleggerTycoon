@@ -422,6 +422,18 @@ MonoBehaviour:
   OnBuildModeEnter:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 336786335}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 8602953127517377137}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -437,6 +449,18 @@ MonoBehaviour:
       - m_Target: {fileID: 858517257}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -464,6 +488,30 @@ MonoBehaviour:
       - m_Target: {fileID: 858517257}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 336786335}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -532,6 +580,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1702653dcfc6a9542a079d3acafaf7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 100
+  OnBuildModeEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildModeExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &642348961
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +837,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
+  OnSellModeEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 708194455}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 858517257}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnSelldModeExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 858517257}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708194455}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &858517251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5590196941109326862, guid: cf4c9a7175aad6c4686e69cad3d19249, type: 3}
@@ -1030,6 +1163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1491160186}
   - component: {fileID: 1491160187}
+  - component: {fileID: 1491160188}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1065,6 +1199,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 858517255}
+--- !u!114 &1491160188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491160185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8834c5f2c54324e9e5735baa326d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1611826587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,9 +2154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0f81654a4d0744c97fc47cdad19253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingGO: {fileID: 336786335}
-  sellingGO: {fileID: 708194455}
-  moveingGO: {fileID: 606235302}
+  building: {fileID: 336786336}
+  selling: {fileID: 708194457}
+  moveing: {fileID: 606235304}
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -2046,6 +2192,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnBuilderViewEnd:
     m_PersistentCalls:
       m_Calls:
@@ -2064,6 +2222,18 @@ MonoBehaviour:
       - m_Target: {fileID: 858517257}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2639,6 +2809,18 @@ MonoBehaviour:
       - m_Target: {fileID: 858517257}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1491160188}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: LockCursor
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
