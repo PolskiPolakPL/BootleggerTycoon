@@ -1,18 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BuildingScript : MonoBehaviour
 {
-    [SerializeField] List<BuildObject> buildingObjects = new List<BuildObject>();
-    [SerializeField] int targetIndex;
+    [SerializeField] Structure targetStructure;
     public UnityEvent OnBuildModeEnter;
     public UnityEvent OnBuildModeExit;
 
-    public void SelectObject(int index)
+    public void SelectObject(Structure structureSO)
     {
-        BuilderManager.Instance.CreatePreview(buildingObjects[index]);
-        Cursor.lockState = CursorLockMode.Locked;
+        targetStructure = structureSO;
+        BuilderManager.Instance.CreatePreview(structureSO);
         OnBuildModeEnter?.Invoke();
     }
     private void Update()
@@ -21,21 +19,21 @@ public class BuildingScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            BuilderManager.Instance.RotateObject(-45);
+            BuilderManager.Instance.RotateObject(45);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            BuilderManager.Instance.RotateObject(45);
+            BuilderManager.Instance.RotateObject(-45);
         }
         if (Input.GetMouseButton(0))
         {
-            BuilderManager.Instance.PlaceObject(buildingObjects[targetIndex]);
+            BuilderManager.Instance.PlaceObject(targetStructure);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
             BuilderManager.Instance.DestroyPreview();
-            Cursor.lockState = CursorLockMode.Confined;
             OnBuildModeExit?.Invoke();
+            BuilderManager.Instance.ActivateBuilding(false);
         }
     }
 }

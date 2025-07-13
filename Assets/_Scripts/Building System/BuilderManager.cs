@@ -1,12 +1,14 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(BuildingScript))]
 public class BuilderManager : MonoBehaviour
 {
     public static BuilderManager Instance;
+    [Header("Script References")]
+    [SerializeField] BuildingScript building;
+    [SerializeField] SellingScript selling;
+    [SerializeField] MovingScript moveing;
 
 
     [Header("Raycast")]
@@ -25,7 +27,6 @@ public class BuilderManager : MonoBehaviour
     [Header("Building System")]
     [SerializeField] GameObject buildView;
     [SerializeField][Range(0, 1)] float previewOpacity = 0.5f;
-    BuildingScript buildingScript;
     public UnityEvent OnBuilderViewEnter;
     public UnityEvent OnBuilderViewEnd;
 
@@ -47,24 +48,57 @@ public class BuilderManager : MonoBehaviour
         {
             BuilderManager.Instance.occupiedPositions.Add(child.position);
         }
+    }
 
-        buildingScript = GetComponent<BuildingScript>();
+    public void ActivateBuilding(bool activate)
+    {
+        if (activate)
+        {
+            building.OnBuildModeEnter?.Invoke();
+        }
+        else
+        {
+            building.OnBuildModeExit?.Invoke();
+        }
+    }
+
+    public void ActivateSelling(bool activate)
+    {
+        if (activate)
+        {
+            selling.OnSellModeEnter?.Invoke();
+        }
+        else
+        {
+            selling.OnSelldModeExit?.Invoke();
+        }
+    }
+
+    public void ActivateMoving(bool activate)
+    {
+        if (activate)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
     public void SwitchBuilderView()
     {
         if (buildView.activeInHierarchy)// BuilderView OFF
         {
-            OnBuilderViewEnd?.Invoke();
+            building.gameObject.SetActive(false);
+            moveing.gameObject.SetActive(false);
+            selling.gameObject.SetActive(false);
             DestroyPreview();
-            buildingScript.enabled = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            OnBuilderViewEnd?.Invoke();
         }
         else // BuilderView ON
         {
             OnBuilderViewEnter?.Invoke();
-            buildingScript.enabled = true;
-            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
@@ -105,22 +139,22 @@ public class BuilderManager : MonoBehaviour
         }
     }
 
-    public void PlaceObject(BuildObject target)
+    public void PlaceObject(Structure target)
     {
         if(!previewGO) return;
         if (!occupiedPositions.Contains(previewGO.transform.position))
         {
             Transform previewT = previewGO.transform;
-            Instantiate(target.BuildPrefab, previewT.position, previewT.rotation, BuilderManager.Instance.buildParent);
+            Instantiate(target.StructurePrefab, previewT.position, previewT.rotation, BuilderManager.Instance.buildParent);
             occupiedPositions.Add(previewT.position);
         }
     }
 
-    public void CreatePreview(BuildObject target)
+    public void CreatePreview(Structure target)
     {
         if(previewGO)
             Destroy(previewGO);
-        previewGO = Instantiate(target.BuildModel, transform);
+        previewGO = Instantiate(target.StructureModel, transform);
         previewGO.layer = LayerMask.NameToLayer("Preview");
         Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
         Material mat;

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6295477860459279587}
   - component: {fileID: 7455870470069524717}
   - component: {fileID: 4641342729416106031}
-  m_Layer: 0
+  - component: {fileID: 4427724968237545434}
+  m_Layer: 8
   m_Name: Dropper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,6 +73,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2959467708922500008, guid: ff03cbaa8be88a9498dd59612f54bfb4, type: 3}
+--- !u!114 &4427724968237545434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589310840292811551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc1b5fadafe49948929af0a62a2afd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StructureSO: {fileID: 11400000, guid: 8ab03ffa727c2f342ad9adabd21327cb, type: 2}
 --- !u!1 &5989414082806293633
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 9191653287883093256}
   - component: {fileID: 3547669261253556596}
   - component: {fileID: 894328404282371550}
-  m_Layer: 0
+  - component: {fileID: 8019076233085171149}
+  m_Layer: 8
   m_Name: Seller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +68,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8019076233085171149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446951979300456100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc1b5fadafe49948929af0a62a2afd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StructureSO: {fileID: 11400000, guid: f28958b6b7de5754a81858afc434005c, type: 2}
 --- !u!1001 &6879009764030397364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +132,10 @@ PrefabInstance:
     - target: {fileID: 2663167406076499340, guid: 714d7a6fd8528e84cb576bc15f57dadb, type: 3}
       propertyPath: m_Name
       value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663167406076499340, guid: 714d7a6fd8528e84cb576bc15f57dadb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

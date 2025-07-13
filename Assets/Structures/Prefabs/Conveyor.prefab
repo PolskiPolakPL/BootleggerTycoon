@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4117881888420310204}
   - component: {fileID: 7701477248787498271}
   - component: {fileID: -5074878909012193200}
+  - component: {fileID: 2074912869560805392}
   m_Layer: 0
   m_Name: Conveyor
   m_TagString: Untagged
@@ -68,6 +69,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+--- !u!114 &2074912869560805392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882337288971869400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc1b5fadafe49948929af0a62a2afd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StructureSO: {fileID: 11400000, guid: 6fc66813e7654d145996f9fff55f08fc, type: 2}
 --- !u!1001 &8514966166052434459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,6 +93,10 @@ PrefabInstance:
     - target: {fileID: 4539303934668081843, guid: f8ee62b2f999baf4a987d3f0996c21c6, type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539303934668081843, guid: f8ee62b2f999baf4a987d3f0996c21c6, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6527174575808464039, guid: f8ee62b2f999baf4a987d3f0996c21c6, type: 3}
       propertyPath: m_LocalPosition.x
