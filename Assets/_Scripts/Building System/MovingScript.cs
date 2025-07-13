@@ -13,8 +13,8 @@ public class MovingScript : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-    public UnityEvent OnBuildModeEnter;
-    public UnityEvent OnBuildModeExit;
+    public UnityEvent OnMoveModeEnter;
+    public UnityEvent OnMoveModeExit;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class MovingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        BuilderManager.Instance.RenderPreview();
         if (Input.GetKeyDown(KeyCode.E))
         {
             BuilderManager.Instance.RotateObject(45);
@@ -35,16 +35,16 @@ public class MovingScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            BuilderManager.Instance.DestroyPreview();
-            OnBuildModeExit?.Invoke();
-            BuilderManager.Instance.ActivateBuilding(false);
+            Rollback();
+            OnMoveModeExit?.Invoke();
         }
         if (Input.GetMouseButtonDown(0))
         {
-            //zrobiæ bool czy podnios³em przedmiot,
-            //jeœli tak to zrobiæ logikê do stawiania,
-            //jesli nie to logikê do podnoszenia
-            PickUpStructure();
+            HandlePickUpPlacement();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Rollback();
         }
     }
 
@@ -62,7 +62,41 @@ public class MovingScript : MonoBehaviour
             previousT = hitT;
             targetStructure = structureScript.StructureSO;
             BuilderManager.Instance.CreatePreview(targetStructure);
+
+            // Temporarily hides prevoius object
             hitT.gameObject.SetActive(false);
+        }
+    }
+
+    void HandlePickUpPlacement()
+    {
+        if (targetStructure)
+        {
+            // Removes prevoius object from scene and occupied list
+            if (BuilderManager.Instance.occupiedPositions.Contains(previousT.position))
+            {
+                BuilderManager.Instance.occupiedPositions.Remove(previousT.position);
+            }
+            Destroy(previousT.gameObject);
+
+            // Places new object and removes preview
+            BuilderManager.Instance.PlaceObject(targetStructure);
+            BuilderManager.Instance.DestroyPreview();
+            targetStructure = null;
+        }
+        else
+        {
+            PickUpStructure();
+        }
+    }
+
+    void Rollback()
+    {
+        if (targetStructure) // rollbacks changes
+        {
+            hit.transform.gameObject.SetActive(true);
+            targetStructure = null;
+            BuilderManager.Instance.DestroyPreview();
         }
     }
 }

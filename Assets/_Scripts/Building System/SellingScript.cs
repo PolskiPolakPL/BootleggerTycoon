@@ -36,8 +36,11 @@ public class SellingScript : MonoBehaviour
             return;
 
         Transform hitT = hit.transform;
+        bool isOnOccupiedList = BuilderManager.Instance.occupiedPositions.Contains(hitT.position);
         if (hitT.TryGetComponent<StructureScript>(out StructureScript structureScript))
         {
+            if (isOnOccupiedList)
+                BuilderManager.Instance.occupiedPositions.Remove(hitT.position);
             structureScript.Sell();
         }
     }

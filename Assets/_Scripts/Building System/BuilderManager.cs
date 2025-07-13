@@ -8,7 +8,7 @@ public class BuilderManager : MonoBehaviour
     [Header("Script References")]
     [SerializeField] BuildingScript building;
     [SerializeField] SellingScript selling;
-    [SerializeField] MovingScript moveing;
+    [SerializeField] MovingScript moving;
 
 
     [Header("Raycast")]
@@ -22,7 +22,7 @@ public class BuilderManager : MonoBehaviour
     [Header("Grid System")]
     [SerializeField] Transform buildParent;
     [SerializeField] float gridSize = 1;
-    List<Vector3> occupiedPositions = new List<Vector3>();
+    public List<Vector3> occupiedPositions = new List<Vector3>();
 
     [Header("Building System")]
     [SerializeField] GameObject buildView;
@@ -78,11 +78,11 @@ public class BuilderManager : MonoBehaviour
     {
         if (activate)
         {
-
+            moving.OnMoveModeEnter?.Invoke();
         }
         else
         {
-
+            moving?.OnMoveModeExit?.Invoke();
         }
     }
 
@@ -91,7 +91,7 @@ public class BuilderManager : MonoBehaviour
         if (buildView.activeInHierarchy)// BuilderView OFF
         {
             building.gameObject.SetActive(false);
-            moveing.gameObject.SetActive(false);
+            moving.gameObject.SetActive(false);
             selling.gameObject.SetActive(false);
             DestroyPreview();
             OnBuilderViewEnd?.Invoke();

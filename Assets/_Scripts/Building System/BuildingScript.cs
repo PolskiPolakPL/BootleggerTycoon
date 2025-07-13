@@ -33,7 +33,6 @@ public class BuildingScript : MonoBehaviour
         {
             BuilderManager.Instance.DestroyPreview();
             OnBuildModeExit?.Invoke();
-            BuilderManager.Instance.ActivateBuilding(false);
         }
     }
 }
