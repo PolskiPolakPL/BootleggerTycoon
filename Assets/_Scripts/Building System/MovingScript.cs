@@ -63,11 +63,12 @@ public class MovingScript : BuildingState
     void PlaceStructure()
     {
         // Places new object and removes preview
-        if(BuilderManager.Instance.CanPlace(previousT))
+        if(BuilderManager.Instance.CanPlace())
         {
             Transform preview = BuilderManager.Instance.GetPreviewTransform();
             previousT.position = preview.position;
             previousT.rotation = preview.rotation;
+            BuilderManager.Instance.occupiedPositions.Add(previousT.position);
             previousT.gameObject.SetActive(true);
             previousT = null;
             BuilderManager.Instance.DestroyPreview();

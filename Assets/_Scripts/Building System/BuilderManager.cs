@@ -106,7 +106,7 @@ public class BuilderManager : MonoBehaviour
 
     public bool PlaceObject(Structure target)
     {
-        if (CanPlace(previewGO.transform))
+        if (CanPlace())
         {
             Transform previewT = previewGO.transform;
             Instantiate(target.StructurePrefab, previewT.position, previewT.rotation, buildParent);
@@ -116,9 +116,9 @@ public class BuilderManager : MonoBehaviour
         return false;
     }
 
-    public bool CanPlace(Transform structureT)
+    public bool CanPlace()
     {
-        return previewGO && !occupiedPositions.Contains(structureT.position);
+        return previewGO && !occupiedPositions.Contains(previewGO.transform.position);
     }
 
     public Transform GetPreviewTransform()
