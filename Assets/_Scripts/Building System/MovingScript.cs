@@ -69,6 +69,7 @@ public class MovingScript : BuildingState
             targetStructure = null;
             //removes previous object
             Destroy(previousT.gameObject);
+            previousT = null;
         }
     }
 
