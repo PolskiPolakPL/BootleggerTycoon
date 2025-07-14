@@ -1,2 +1,2 @@
-# BootleggerTycoon
-Typowy Tycoon z Roblox-a, ale w Unity.
+# BootleggerTycoon - Build
+Here you can download Latest available build of my game!
