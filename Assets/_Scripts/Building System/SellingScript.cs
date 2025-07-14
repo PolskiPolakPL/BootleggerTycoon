@@ -1,21 +1,13 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-public class SellingScript : MonoBehaviour
+public class SellingScript : BuildingState
 {
-    [Header("Raycast")]
-    [SerializeField] float range = 100;
-    Camera cam;
-    Ray ray;
-    RaycastHit hit;
-
-    public UnityEvent OnSellModeEnter;
-    public UnityEvent OnSelldModeExit;
+    float range;
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
+        range = BuilderManager.Instance.BuildRange;
     }
 
     // Update is called once per frame
@@ -23,16 +15,16 @@ public class SellingScript : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
             HandelSelling();
+
         if(Input.GetKeyDown(KeyCode.X))
             CancelSelling();
     }
 
     void HandelSelling()
     {
-        ray = cam.ScreenPointToRay(Input.mousePosition);
-
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //if raycast DOESN'T hit ANYTHING
-        if (!Physics.Raycast(ray, out hit, range))
+        if (!Physics.Raycast(ray, out RaycastHit hit, range))
             return;
 
         Transform hitT = hit.transform;
@@ -47,6 +39,6 @@ public class SellingScript : MonoBehaviour
 
     void CancelSelling()
     {
-        OnSelldModeExit?.Invoke();
+        Deactivate();
     }
 }

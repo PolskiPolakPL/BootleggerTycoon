@@ -1,59 +1,83 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-public class MovingScript : MonoBehaviour
+public class MovingScript : BuildingState
 {
-
     Structure targetStructure;
     Transform previousT;
-
-    [Header("Raycast")]
-    [SerializeField] float range = 100;
-    Camera cam;
-    Ray ray;
-    RaycastHit hit;
-
-    public UnityEvent OnMoveModeEnter;
-    public UnityEvent OnMoveModeExit;
+        float range;
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
+        range = BuilderManager.Instance.BuildRange;
     }
 
     // Update is called once per frame
     void Update()
     {
         BuilderManager.Instance.RenderPreview();
+
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             BuilderManager.Instance.RotateObject(45);
         }
+
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             BuilderManager.Instance.RotateObject(-45);
         }
+
+
         if (Input.GetKeyDown(KeyCode.X))
         {
             Rollback();
-            OnMoveModeExit?.Invoke();
+            Deactivate();
         }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             HandlePickUpPlacement();
         }
+
+
         if (Input.GetMouseButtonDown(1))
         {
             Rollback();
         }
     }
 
+    void HandlePickUpPlacement()
+    {
+        if (targetStructure)
+        {
+            PlaceStructure();
+        }
+        else
+        {
+            PickUpStructure();
+        }
+    }
+
+    void PlaceStructure()
+    {
+        // Places new object and removes preview
+        if (BuilderManager.Instance.PlaceObject(targetStructure))
+        {
+            BuilderManager.Instance.DestroyPreview();
+            targetStructure = null;
+            //removes previous object
+            Destroy(previousT.gameObject);
+        }
+    }
+
     void PickUpStructure()
     {
-        ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //if raycast DOESN'T hit ANYTHING
-        if (!Physics.Raycast(ray, out hit, range))
+        if (!Physics.Raycast(ray, out RaycastHit hit, range))
             return;
 
         Transform hitT = hit.transform;
@@ -62,31 +86,11 @@ public class MovingScript : MonoBehaviour
             previousT = hitT;
             targetStructure = structureScript.StructureSO;
             BuilderManager.Instance.CreatePreview(targetStructure);
-
-            // Temporarily hides prevoius object
-            hitT.gameObject.SetActive(false);
-        }
-    }
-
-    void HandlePickUpPlacement()
-    {
-        if (targetStructure)
-        {
-            // Removes prevoius object from scene and occupied list
             if (BuilderManager.Instance.occupiedPositions.Contains(previousT.position))
-            {
                 BuilderManager.Instance.occupiedPositions.Remove(previousT.position);
-            }
-            Destroy(previousT.gameObject);
 
-            // Places new object and removes preview
-            BuilderManager.Instance.PlaceObject(targetStructure);
-            BuilderManager.Instance.DestroyPreview();
-            targetStructure = null;
-        }
-        else
-        {
-            PickUpStructure();
+                // Temporarily hides prevoius object
+                hitT.gameObject.SetActive(false);
         }
     }
 
@@ -94,7 +98,9 @@ public class MovingScript : MonoBehaviour
     {
         if (targetStructure) // rollbacks changes
         {
-            hit.transform.gameObject.SetActive(true);
+            if (!BuilderManager.Instance.occupiedPositions.Contains(previousT.position))
+                BuilderManager.Instance.occupiedPositions.Add(previousT.position);
+            previousT.gameObject.SetActive(true);
             targetStructure = null;
             BuilderManager.Instance.DestroyPreview();
         }

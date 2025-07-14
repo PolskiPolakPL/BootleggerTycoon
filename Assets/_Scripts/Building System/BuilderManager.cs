@@ -13,7 +13,7 @@ public class BuilderManager : MonoBehaviour
 
     [Header("Raycast")]
     [SerializeField] LayerMask raycastLayerMask;
-    [SerializeField] float range=100;
+    public float BuildRange=100;
     Camera cam;
     Ray ray;
     RaycastHit hit;
@@ -40,49 +40,12 @@ public class BuilderManager : MonoBehaviour
         else Instance = this;
 
         //Camera
-        if(!cam)
-            cam=Camera.main;
+        cam=Camera.main;
 
         //Add existing positions to list
         foreach (Transform child in BuilderManager.Instance.buildParent)
         {
             BuilderManager.Instance.occupiedPositions.Add(child.position);
-        }
-    }
-
-    public void ActivateBuilding(bool activate)
-    {
-        if (activate)
-        {
-            building.OnBuildModeEnter?.Invoke();
-        }
-        else
-        {
-            building.OnBuildModeExit?.Invoke();
-        }
-    }
-
-    public void ActivateSelling(bool activate)
-    {
-        if (activate)
-        {
-            selling.OnSellModeEnter?.Invoke();
-        }
-        else
-        {
-            selling.OnSelldModeExit?.Invoke();
-        }
-    }
-
-    public void ActivateMoving(bool activate)
-    {
-        if (activate)
-        {
-            moving.OnMoveModeEnter?.Invoke();
-        }
-        else
-        {
-            moving?.OnMoveModeExit?.Invoke();
         }
     }
 
@@ -119,7 +82,7 @@ public class BuilderManager : MonoBehaviour
         if (!previewGO)
             return;
         ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, range, raycastLayerMask))
+        if (Physics.Raycast(ray, out hit, BuildRange, raycastLayerMask))
         {
             Vector3 hitPoint = hit.point;
             Vector3 newPos = new Vector3(
@@ -139,15 +102,18 @@ public class BuilderManager : MonoBehaviour
         }
     }
 
-    public void PlaceObject(Structure target)
+    public bool PlaceObject(Structure target)
     {
-        if(!previewGO) return;
-        if (!occupiedPositions.Contains(previewGO.transform.position))
+        if(!previewGO)
+            return false;
+        Transform previewT = previewGO.transform;
+        if (!occupiedPositions.Contains(previewT.position))
         {
-            Transform previewT = previewGO.transform;
-            Instantiate(target.StructurePrefab, previewT.position, previewT.rotation, BuilderManager.Instance.buildParent);
+            Instantiate(target.StructurePrefab, previewT.position, previewT.rotation, buildParent);
             occupiedPositions.Add(previewT.position);
+            return true;
         }
+        return false;
     }
 
     public void CreatePreview(Structure target)
