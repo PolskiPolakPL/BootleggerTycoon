@@ -133,7 +133,10 @@ public class BuilderManager : MonoBehaviour
         previewGO = Instantiate(target.StructureModel, transform);
         previewGO.layer = LayerMask.NameToLayer("Preview");
         Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
-        CreatePreviewMaterial(renderers);
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = GetPreviewMaterial(renderer.material);
+        }
     }
 
     public void CreatePreview(Structure target, Transform targetT)
@@ -143,29 +146,32 @@ public class BuilderManager : MonoBehaviour
         previewGO = Instantiate(target.StructureModel, targetT.position, targetT.rotation, transform);
         previewGO.layer = LayerMask.NameToLayer("Preview");
         Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
-        CreatePreviewMaterial(renderers);
-    }
-
-    void CreatePreviewMaterial(Renderer[] renderers)
-    {
-        Material mat;
-        UnityEngine.Color color;
         foreach (Renderer renderer in renderers)
         {
-            mat = renderer.material;
-            color = mat.color;
-            color.a = previewOpacity;
-            mat.color = color;
-
-            mat.SetFloat("_Mode", 3);
-            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            mat.SetInt("_Zwrite", 0);
-            mat.DisableKeyword("_ALPHATEST_ON");
-            mat.EnableKeyword("_ALPHABLEND_ON");
-            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            mat.renderQueue = 3000;
+            renderer.material = GetPreviewMaterial(renderer.material);
         }
+    }
+
+    Material GetPreviewMaterial(Material original)
+    {
+        Material mat = new Material(original);
+
+        mat.shader = Shader.Find("Standard");    // Set "Standard" Shader
+        mat.name = "prev-"+original.name;        // Material name
+        mat.SetFloat("_Mode", 3f);               // Rendering Mode: Transparent
+        mat.renderQueue = 3000;                  // Render Queue
+        mat.SetOverrideTag("RenderType", "Transparent");
+        mat.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.One);
+        mat.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        mat.DisableKeyword("_ALPHATEST_ON");
+        mat.DisableKeyword("_ALPHABLEND_ON");
+        mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+
+        UnityEngine.Color color = mat.color;
+        color.a = previewOpacity;
+        mat.color = color;
+
+        return mat;
     }
 
 
