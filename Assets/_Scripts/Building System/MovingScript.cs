@@ -63,13 +63,15 @@ public class MovingScript : BuildingState
     void PlaceStructure()
     {
         // Places new object and removes preview
-        if (BuilderManager.Instance.PlaceObject(targetStructure))
+        if(BuilderManager.Instance.CanPlace(previousT))
         {
+            Transform preview = BuilderManager.Instance.GetPreviewTransform();
+            previousT.position = preview.position;
+            previousT.rotation = preview.rotation;
+            previousT.gameObject.SetActive(true);
+            previousT = null;
             BuilderManager.Instance.DestroyPreview();
             targetStructure = null;
-            //removes previous object
-            Destroy(previousT.gameObject);
-            previousT = null;
         }
     }
 
@@ -86,12 +88,12 @@ public class MovingScript : BuildingState
         {
             previousT = hitT;
             targetStructure = structureScript.StructureSO;
-            BuilderManager.Instance.CreatePreview(targetStructure);
+            BuilderManager.Instance.CreatePreview(targetStructure, previousT);
             if (BuilderManager.Instance.occupiedPositions.Contains(previousT.position))
                 BuilderManager.Instance.occupiedPositions.Remove(previousT.position);
 
-                // Temporarily hides prevoius object
-                hitT.gameObject.SetActive(false);
+            // Temporarily hides prevoius object
+            previousT.gameObject.SetActive(false);
         }
     }
 

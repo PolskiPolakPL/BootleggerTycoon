@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -104,16 +106,24 @@ public class BuilderManager : MonoBehaviour
 
     public bool PlaceObject(Structure target)
     {
-        if(!previewGO)
-            return false;
-        Transform previewT = previewGO.transform;
-        if (!occupiedPositions.Contains(previewT.position))
+        if (CanPlace(previewGO.transform))
         {
+            Transform previewT = previewGO.transform;
             Instantiate(target.StructurePrefab, previewT.position, previewT.rotation, buildParent);
             occupiedPositions.Add(previewT.position);
             return true;
         }
         return false;
+    }
+
+    public bool CanPlace(Transform structureT)
+    {
+        return previewGO && !occupiedPositions.Contains(structureT.position);
+    }
+
+    public Transform GetPreviewTransform()
+    {
+        return previewGO.transform;
     }
 
     public void CreatePreview(Structure target)
@@ -123,8 +133,23 @@ public class BuilderManager : MonoBehaviour
         previewGO = Instantiate(target.StructureModel, transform);
         previewGO.layer = LayerMask.NameToLayer("Preview");
         Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
+        CreatePreviewMaterial(renderers);
+    }
+
+    public void CreatePreview(Structure target, Transform targetT)
+    {
+        if (previewGO)
+            Destroy(previewGO);
+        previewGO = Instantiate(target.StructureModel, targetT.position, targetT.rotation, transform);
+        previewGO.layer = LayerMask.NameToLayer("Preview");
+        Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
+        CreatePreviewMaterial(renderers);
+    }
+
+    void CreatePreviewMaterial(Renderer[] renderers)
+    {
         Material mat;
-        Color color;
+        UnityEngine.Color color;
         foreach (Renderer renderer in renderers)
         {
             mat = renderer.material;
@@ -133,7 +158,7 @@ public class BuilderManager : MonoBehaviour
             mat.color = color;
 
             mat.SetFloat("_Mode", 3);
-            mat.SetInt("_SrcBlend",(int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
             mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
             mat.SetInt("_Zwrite", 0);
             mat.DisableKeyword("_ALPHATEST_ON");
