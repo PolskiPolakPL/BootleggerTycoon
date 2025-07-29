@@ -73,7 +73,7 @@ public class MovingScript : BuildingState
 
     void PickUpStructure()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = BuilderManager.Instance.cam.ScreenPointToRay(Input.mousePosition);
 
         //if raycast DOESN'T hit ANYTHING
         if (!Physics.Raycast(ray, out RaycastHit hit, range))

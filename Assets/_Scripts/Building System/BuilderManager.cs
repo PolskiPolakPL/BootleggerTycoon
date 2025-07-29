@@ -18,7 +18,7 @@ public class BuilderManager : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] LayerMask raycastLayerMask;
     public float BuildRange=100;
-    Camera cam;
+    public Camera cam;
     Ray ray;
     RaycastHit hit;
     GameObject previewGO;
@@ -42,9 +42,6 @@ public class BuilderManager : MonoBehaviour
         if (Instance && Instance != this)
             Destroy(gameObject);
         else Instance = this;
-
-        //Camera
-        cam=Camera.main;
 
         //Add existing positions to list
         foreach (Transform child in BuilderManager.Instance.buildParent)
