@@ -13,7 +13,7 @@ public class SellingScript : BuildingState
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
             HandelSelling();
 
         if(Input.GetKeyDown(KeyCode.X))
@@ -34,6 +34,7 @@ public class SellingScript : BuildingState
             if (isOnOccupiedList)
                 BuilderManager.Instance.occupiedPositions.Remove(hitT.position);
             structureScript.Sell();
+            BuilderManager.Instance.OnStructureSold?.Invoke();
         }
     }
 

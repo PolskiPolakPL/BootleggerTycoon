@@ -14,21 +14,16 @@ public class BuildingScript : BuildingState
         BuilderManager.Instance.RenderPreview();
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            BuilderManager.Instance.RotateObject(45);
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            BuilderManager.Instance.RotateObject(-45);
+            BuilderManager.Instance.RotateObject(90);
         }
 
 
         if (Input.GetMouseButton(0))
         {
             BuilderManager.Instance.PlaceObject(targetStructure);
+            BuilderManager.Instance.OnStructurePlaced?.Invoke();
         }
 
 

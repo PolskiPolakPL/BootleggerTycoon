@@ -9,8 +9,10 @@ public class BuilderManager : MonoBehaviour
     public static BuilderManager Instance;
     [Header("Script References")]
     [SerializeField] BuildingScript building;
-    [SerializeField] SellingScript selling;
     [SerializeField] MovingScript moving;
+    public UnityEvent OnStructurePlaced;
+    [SerializeField] SellingScript selling;
+    public UnityEvent OnStructureSold;
 
 
     [Header("Raycast")]

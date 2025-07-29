@@ -17,15 +17,9 @@ public class MovingScript : BuildingState
         BuilderManager.Instance.RenderPreview();
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            BuilderManager.Instance.RotateObject(45);
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            BuilderManager.Instance.RotateObject(-45);
+            BuilderManager.Instance.RotateObject(90);
         }
 
 
@@ -70,6 +64,7 @@ public class MovingScript : BuildingState
             previousT.rotation = preview.rotation;
             BuilderManager.Instance.occupiedPositions.Add(previousT.position);
             previousT.gameObject.SetActive(true);
+            BuilderManager.Instance.OnStructurePlaced?.Invoke();
             previousT = null;
             BuilderManager.Instance.DestroyPreview();
             targetStructure = null;
