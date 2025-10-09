@@ -22,7 +22,7 @@ public class SellingScript : BuildingState
 
     void HandelSelling()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = BuilderManager.Instance.cam.ScreenPointToRay(Input.mousePosition);
         //if raycast DOESN'T hit ANYTHING
         if (!Physics.Raycast(ray, out RaycastHit hit, range))
             return;
