@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
+  m_Name: Conveyor
+  m_EditorClassIdentifier: 
+  StructurePrefab: {fileID: 882337288971869400, guid: 5d9418e0e08aed54396d52327e602672, type: 3}
+  StructureModel: {fileID: 4539303934668081843, guid: f8ee62b2f999baf4a987d3f0996c21c6, type: 3}
+  Name: Conveyor
+  BuildingCost:
+  - 10
+  - 50
+  SellValueMultiplier: 1
