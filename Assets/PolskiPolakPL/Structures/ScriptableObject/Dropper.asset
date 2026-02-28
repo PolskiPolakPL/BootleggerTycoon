@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
+  m_Name: Dropper
+  m_EditorClassIdentifier: 
+  StructurePrefab: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+  StructureModel: {fileID: 8890186896224653451, guid: 0a5f974d0f0e28641a6cbe09f4b585cb, type: 3}
+  Name: Rum Dropper
+  BuildingCost:
+  - 100
+  - 250
+  - 600
+  - 1500
+  - 3000
+  SellValueMultiplier: 0.8
