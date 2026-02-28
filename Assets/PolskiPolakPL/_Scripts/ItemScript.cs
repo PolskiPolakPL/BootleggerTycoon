@@ -1,7 +1,7 @@
 using PolskiPolakPL.Utils;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class ItemScript : MonoBehaviour
 {
     [SerializeField] float lifeSpan = 60.0f;
     [SerializeField] float sellValue;
