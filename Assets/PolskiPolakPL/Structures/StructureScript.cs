@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StructureScript : MonoBehaviour
 {
-    public Structure StructureSO;
+    public StructureSO StructureSO;
     float currentCost;
     float returnVal;
     float[] levelCosts;

@@ -6,7 +6,6 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
 
-
     [SerializeField] TMP_Text moneyLabel;
 
     PlayerScript playerScript;
