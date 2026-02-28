@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StructureMovingScript : MonoBehaviour
+public class StructureMovingManager : MonoBehaviour
 {
     //player camera
     [SerializeField] Camera playerCam;
@@ -15,6 +15,13 @@ public class StructureMovingScript : MonoBehaviour
     Transform previousT;
     StructureSO targetStructure;
 
+    public static StructureMovingManager Instance { get; private set; }
+    private void Awake()
+    {
+        if(Instance && Instance!=this)
+            Destroy(this.gameObject);
+    }
+
     private void OnValidate()
     {
         if(!playerCam)
@@ -23,18 +30,16 @@ public class StructureMovingScript : MonoBehaviour
 
     void Update()
     {
+
         RenderPreview();
 
         if (Input.GetKey(KeyCode.E))
             RotateStructure(rotateAngleStep * Time.deltaTime);
+
         if(Input.GetKey(KeyCode.Q))
             RotateStructure(-rotateAngleStep * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Rollback();
-        }
-
+        
         if (Input.GetMouseButtonDown(0))
         {
             if (targetStructure)
@@ -42,14 +47,13 @@ public class StructureMovingScript : MonoBehaviour
             else
                 PickUpStructure();
         }
+            
 
         if (Input.GetMouseButtonDown(1))
-        {
             Rollback();
-        }
     }
 
-    void PickUpStructure()
+    public void PickUpStructure()
     {
         Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
 
@@ -69,7 +73,7 @@ public class StructureMovingScript : MonoBehaviour
         }
     }
 
-    public void RotateStructure(float angle)
+    void RotateStructure(float angle)
     {
         if (previewGO)
             previewGO.transform.Rotate(new Vector3(0, angle, 0));
@@ -102,7 +106,7 @@ public class StructureMovingScript : MonoBehaviour
         }
     }
 
-    public void RenderPreview()
+    void RenderPreview()
     {
         if (!previewGO)
             return;

@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
-
-public class PickableScript : MonoBehaviour
+[RequireComponent(typeof(Interactable))]
+public class PickableObject : MonoBehaviour
 {
     Interactable interactable;
-    public ItemSO itemSO;
-    public event Action<ItemSO> OnItemPickUp;
+    public event Action OnItemPickUp;
     private void Awake()
     {
         interactable = GetComponent<Interactable>();
@@ -14,8 +13,7 @@ public class PickableScript : MonoBehaviour
 
     void PickUp()
     {
-        OnItemPickUp?.Invoke(itemSO);
-        Destroy(gameObject);
+        OnItemPickUp?.Invoke();
     }
 
     private void OnDestroy()
