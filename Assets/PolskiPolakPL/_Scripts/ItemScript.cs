@@ -1,17 +1,20 @@
 using PolskiPolakPL.Utils;
 using UnityEngine;
-
-public class ItemScript : MonoBehaviour
+[RequireComponent(typeof(Interactable))]
+public class ItemScript : MonoBehaviour, IPickable
 {
     [SerializeField] float lifeSpan = 60.0f;
     [SerializeField] float sellValue;
 
     Timer timer;
+    Interactable interactable;
 
     private void Awake()
     {
         timer = new Timer(lifeSpan, false);
         timer.OnTimerElapsed += DespawnObject;
+        interactable = GetComponent<Interactable>();
+        interactable.OnInteraction += PickUp;
     }
 
     // Update is called once per frame
@@ -37,8 +40,15 @@ public class ItemScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void PickUp()
+    {
+        Debug.Log($"You've picked up '{gameObject.name}'!");
+        DespawnObject();
+    }
+
     private void OnDestroy()
     {
+        interactable.OnInteraction -= PickUp;
         timer.OnTimerElapsed -= DespawnObject;
     }
 }

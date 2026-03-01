@@ -17,6 +17,6 @@ public class StructureScript : MonoBehaviour, IPickable
 
     public void PickUp()
     {
-        StructureMovingManager.Instance.PickUpStructure(this);
+        BuildingSystem.Instance.PickUpStructure(this);
     }
 }

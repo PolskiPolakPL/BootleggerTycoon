@@ -23,7 +23,7 @@ public class InteractionUIManager : MonoBehaviour
 
     public void EnableInteractionText(string text)
     {
-        interactionMessage.text = "[E]" + text;
+        interactionMessage.text = text;
         interactionMessage.gameObject.SetActive(true);
     }
     public void DisableInteractionText()

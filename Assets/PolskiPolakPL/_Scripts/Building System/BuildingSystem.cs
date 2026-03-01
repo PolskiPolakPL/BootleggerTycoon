@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class StructureMovingManager : MonoBehaviour
+public class BuildingSystem : MonoBehaviour
 {
     //player camera
     [SerializeField] Transform playerCamT;
@@ -9,15 +8,15 @@ public class StructureMovingManager : MonoBehaviour
     [SerializeField] LayerMask includeLayer;
 
     // preview
-    [SerializeField] float previewOpacity;
-    [SerializeField] float rotateAngleStep = 15;
+    [SerializeField][Range(0,1)] float previewOpacity;
+    [SerializeField][Tooltip("Angular speed of preview object when rotated. [deg/s]")] float rotateSpeed = 90;
 
     GameObject previewGO;
     Transform previousT;
     Ray ray;
     bool canPlace = false;
 
-    public static StructureMovingManager Instance { get; private set; }
+    public static BuildingSystem Instance { get; private set; }
     private void Awake()
     {
         if(Instance && Instance!=this)
@@ -35,10 +34,10 @@ public class StructureMovingManager : MonoBehaviour
         UpdatePreviewPosition();
 
         if (Input.GetKey(KeyCode.E))
-            RotateStructure(rotateAngleStep * Time.deltaTime);
+            RotateStructure(rotateSpeed * Time.deltaTime);
 
         if(Input.GetKey(KeyCode.Q))
-            RotateStructure(-rotateAngleStep * Time.deltaTime);
+            RotateStructure(-rotateSpeed * Time.deltaTime);
         
         if (Input.GetMouseButtonDown(0) && canPlace)
             PlaceStructure();
@@ -51,11 +50,11 @@ public class StructureMovingManager : MonoBehaviour
     {
         if(previewGO)
             return;
-            previousT = structureScr.transform;
-            previewGO = CreatePreview(structureScr.StructureSO);
-
-            // Temporarily hides prevoius object
-            previousT.gameObject.SetActive(false);
+        previousT = structureScr.transform;
+        previewGO = CreatePreview(structureScr.StructureSO);
+        previewGO.transform.rotation = previousT.rotation;
+        // Temporarily hides prevoius object
+        previousT.gameObject.SetActive(false);
     }
 
     void RotateStructure(float angle)

@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173047085}
   - component: {fileID: 173047086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Building System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,16 +196,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 173047084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46319635dba1a944cba87dc9e9a7a386, type: 3}
+  m_Script: {fileID: 11500000, guid: 843174c2ea57d52459d85281b0c79c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamT: {fileID: 1468109028}
-  buildingRange: 5
+  buildingRange: 3
   includeLayer:
     serializedVersion: 2
     m_Bits: 128
   previewOpacity: 0.5
-  rotateAngleStep: 90
+  rotateSpeed: 90
 --- !u!1 &360553563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraT: {fileID: 1468109028}
   playerReach: 2
-  interactionKey: 101
+  interactionKey: 323
 --- !u!1 &1579046145
 GameObject:
   m_ObjectHideFlags: 0
