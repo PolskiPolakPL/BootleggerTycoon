@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StructureMovingManager : MonoBehaviour
 {
     //player camera
-    [SerializeField] Camera playerCam;
+    [SerializeField] Transform playerCamT;
     [SerializeField] float buildingRange = 3;
     [SerializeField] LayerMask includeLayer;
 
@@ -13,127 +14,98 @@ public class StructureMovingManager : MonoBehaviour
 
     GameObject previewGO;
     Transform previousT;
-    StructureSO targetStructure;
+    Ray ray;
+    bool canPlace = false;
 
     public static StructureMovingManager Instance { get; private set; }
     private void Awake()
     {
         if(Instance && Instance!=this)
             Destroy(this.gameObject);
-    }
-
-    private void OnValidate()
-    {
-        if(!playerCam)
-            playerCam = Camera.main;
+        else
+            Instance = this;
+        if (!playerCamT)
+            playerCamT = Camera.main.transform;
     }
 
     void Update()
     {
-
-        RenderPreview();
+        if (!previewGO)
+            return;
+        UpdatePreviewPosition();
 
         if (Input.GetKey(KeyCode.E))
             RotateStructure(rotateAngleStep * Time.deltaTime);
 
         if(Input.GetKey(KeyCode.Q))
             RotateStructure(-rotateAngleStep * Time.deltaTime);
-
         
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (targetStructure)
-                PlaceStructure();
-            else
-                PickUpStructure();
-        }
-            
+        if (Input.GetMouseButtonDown(0) && canPlace)
+            PlaceStructure();
 
         if (Input.GetMouseButtonDown(1))
-            Rollback();
+            UndoMovement();
     }
 
-    public void PickUpStructure()
+    public void PickUpStructure(StructureScript structureScr)
     {
-        Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
-
-        //if raycast DOESN'T hit ANYTHING
-        if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange))
+        if(previewGO)
             return;
-
-        Transform hitT = hit.transform;
-        if (hitT.TryGetComponent<StructureScript>(out StructureScript structureScript))
-        {
-            previousT = hitT;
-            targetStructure = structureScript.StructureSO;
-            CreatePreview(targetStructure, previousT);
+            previousT = structureScr.transform;
+            previewGO = CreatePreview(structureScr.StructureSO);
 
             // Temporarily hides prevoius object
             previousT.gameObject.SetActive(false);
-        }
     }
 
     void RotateStructure(float angle)
     {
-        if (previewGO)
-            previewGO.transform.Rotate(new Vector3(0, angle, 0));
+        previewGO.transform.Rotate(new Vector3(0, angle, 0));
     }
 
     void PlaceStructure()
     {
         // Places new object and removes preview
-        if (previewGO)
-        {
-            Transform preview = previewGO.transform;
-            previousT.position = preview.position;
-            previousT.rotation = preview.rotation;
-            previousT.gameObject.SetActive(true);
-            previousT = null;
-            if (previewGO)
-                Destroy(previewGO);
-            targetStructure = null;
-        }
+        Transform preview = previewGO.transform;
+        previousT.position = preview.position;
+        previousT.rotation = preview.rotation;
+        previousT.gameObject.SetActive(true);
+        previousT = null;
+        Destroy(previewGO);
     }
 
-    void Rollback()
+    void UndoMovement()
     {
-        if (targetStructure) // rollbacks changes
-        {
-            previousT.gameObject.SetActive(true);
-            targetStructure = null;
-            if (previewGO)
-                Destroy(previewGO);
-        }
+        previousT.gameObject.SetActive(true);
+        previousT = null;
+        Destroy(previewGO);
     }
 
-    void RenderPreview()
+    void UpdatePreviewPosition()
     {
-        if (!previewGO)
-            return;
-
-        Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
+        ray = new Ray(playerCamT.position, playerCamT.forward);
         if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange, includeLayer))
         {
             previewGO.SetActive(false);
+            canPlace = false;
             return;
         }
-
-        Vector3 newPos = hit.point;
-        previewGO.transform.position = newPos;
+        canPlace = true;
+        previewGO.transform.position = hit.point;
         if (!previewGO.activeInHierarchy)
             previewGO.SetActive(true);
     }
 
-    public void CreatePreview(StructureSO target, Transform targetT)
+    public GameObject CreatePreview(StructureSO structureData)
     {
-        if (previewGO)
-            Destroy(previewGO);
-        previewGO = Instantiate(target.StructureModel, targetT.position, targetT.rotation, transform);
-        previewGO.layer = LayerMask.NameToLayer("Preview");
-        Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
+        GameObject newGO = Instantiate(structureData.StructureModel, transform);
+        newGO.name = $"[Preview] {structureData.Name}";
+        newGO.layer = LayerMask.NameToLayer("Preview");
+        Renderer[] renderers = newGO.GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in renderers)
         {
             renderer.material = MaterialMaker.MakePreviewMaterial(renderer.material, previewOpacity);
         }
+        return newGO;
     }
 }

@@ -1,19 +1,19 @@
 using System;
 using UnityEngine;
 [RequireComponent(typeof(Interactable))]
-public class PickableObject : MonoBehaviour
+public class RedCubeScript : MonoBehaviour, IPickable
 {
     Interactable interactable;
-    public event Action OnItemPickUp;
     private void Awake()
     {
         interactable = GetComponent<Interactable>();
         interactable.OnInteraction += PickUp;
     }
 
-    void PickUp()
+    public void PickUp()
     {
-        OnItemPickUp?.Invoke();
+        Debug.Log($"Picked up {this.name}!");
+        Destroy(gameObject);
     }
 
     private void OnDestroy()

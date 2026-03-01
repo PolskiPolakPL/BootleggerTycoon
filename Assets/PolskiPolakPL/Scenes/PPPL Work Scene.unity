@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46319635dba1a944cba87dc9e9a7a386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 1468109025}
+  playerCamT: {fileID: 1468109028}
   buildingRange: 5
   includeLayer:
     serializedVersion: 2
@@ -248,6 +248,10 @@ PrefabInstance:
     - target: {fileID: 5612997135575571203, guid: 8c6006c128fb43f4f8b30365d9a9f58f, type: 3}
       propertyPath: m_Name
       value: Red Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 5612997135575571203, guid: 8c6006c128fb43f4f8b30365d9a9f58f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9036553722079232153, guid: 8c6006c128fb43f4f8b30365d9a9f58f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -543,6 +547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Conveyor
       objectReference: {fileID: 0}
+    - target: {fileID: 882337288971869400, guid: 5d9418e0e08aed54396d52327e602672, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 4117881888420310204, guid: 5d9418e0e08aed54396d52327e602672, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.299
@@ -584,7 +592,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 4993004571887899560, guid: 5d9418e0e08aed54396d52327e602672, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1555,11 +1563,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5590196941109326862, guid: cf4c9a7175aad6c4686e69cad3d19249, type: 3}
   m_PrefabInstance: {fileID: 1468109023}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &1468109025 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3602340091708178116, guid: cf4c9a7175aad6c4686e69cad3d19249, type: 3}
-  m_PrefabInstance: {fileID: 1468109023}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1468109026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1311002420324156997, guid: cf4c9a7175aad6c4686e69cad3d19249, type: 3}
@@ -1940,6 +1943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seller
       objectReference: {fileID: 0}
+    - target: {fileID: 8446951979300456100, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 9191653287883093256, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.56
@@ -1997,6 +2004,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dropper
       objectReference: {fileID: 0}
+    - target: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 6295477860459279587, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11174774
@@ -2036,6 +2047,10 @@ PrefabInstance:
     - target: {fileID: 6295477860459279587, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933213691309126456, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
+      propertyPath: message
+      value: Pick Up
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
