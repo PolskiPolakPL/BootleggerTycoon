@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0a7e62230a15ec902846b01caf7e878c
+guid: 31c5d5d7abfbbd81a9ccde96ff65e355
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: 6f85ec5ca75fa9b66a874b94c0dc5a98, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Korek.001
-    second: {fileID: 2100000, guid: b5b869599f28a901ba4ce62400eff6b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MetalTex
-    second: {fileID: -3764319608612465993, guid: 0f8751a96075b4408875fcfa9ffe028d, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: WoodTex
-    second: {fileID: 2100000, guid: 292f2743b80a3efb0ab60fbbe2115893, type: 2}
+    second: {fileID: 2100000, guid: 4ff438ea4426f18f1a2a0fd7104bb718, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

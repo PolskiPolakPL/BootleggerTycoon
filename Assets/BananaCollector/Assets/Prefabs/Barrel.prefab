@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 917028434068812033}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.111581, y: 0.00040138452, z: 1.7147901}
+  m_LocalPosition: {x: 7.111581, y: 0.00040138452, z: -0.792}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59,8 +59,8 @@ Transform:
   m_GameObject: {fileID: 1930073429634849928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0029067113, y: 1.7358568, z: 0.7296197}
-  m_LocalScale: {x: 0.06151916, y: 0.028874798, z: 0.06151916}
+  m_LocalPosition: {x: 0.0006, y: 0.9099, z: 0.2433}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8582842254899797922}
@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 8582842254899797922}
   - component: {fileID: 4768159938848315208}
   - component: {fileID: 1137517065502979370}
+  - component: {fileID: 161604222431837506}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -143,7 +144,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0000007391347, y: -0.00040122867, z: 0.0000022650504}
-  m_LocalScale: {x: 0.33325318, y: 0.52297527, z: 0.33325318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3345982086430422712}
@@ -179,7 +180,6 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: d3c5f2e114c6d3804bda839ddd1b7f1e, type: 2}
   - {fileID: 2100000, guid: 68ad621f6a1efb599ada86a4b78e4946, type: 2}
-  - {fileID: 2100000, guid: af1c83e63b840c8febaefa1a74adac89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -201,3 +201,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &161604222431837506
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066376841050630310}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8108563764783910780, guid: 0f8751a96075b4408875fcfa9ffe028d, type: 3}

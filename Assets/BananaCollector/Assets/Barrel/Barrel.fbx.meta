@@ -3,27 +3,7 @@ guid: 0f8751a96075b4408875fcfa9ffe028d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Korek
-    second: {fileID: 2100000, guid: b5b869599f28a901ba4ce62400eff6b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: af1c83e63b840c8febaefa1a74adac89, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MetalTex
-    second: {fileID: 2100000, guid: 68ad621f6a1efb599ada86a4b78e4946, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WoodTex
-    second: {fileID: 2100000, guid: d3c5f2e114c6d3804bda839ddd1b7f1e, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
