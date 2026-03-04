@@ -1,7 +1,9 @@
 using PolskiPolakPL.Utils;
 using UnityEngine;
+using static UnityEditor.Progress;
 [RequireComponent(typeof(Interactable))]
-public class ItemScript : MonoBehaviour, IPickable
+
+public class ItemScript : MonoBehaviour, IPickable, ISellable
 {
     [SerializeField] float lifeSpan = 60.0f;
     [SerializeField] float sellValue;
@@ -23,18 +25,6 @@ public class ItemScript : MonoBehaviour, IPickable
         timer.Tick(Time.deltaTime);
     }
 
-    public float GetSellValue()
-    {
-        return sellValue;
-    }
-
-    public void ChangeSellValue(float newSellValue)
-    {
-        if (newSellValue < 0)
-            return;
-        sellValue = newSellValue;
-    }
-
     public void DespawnObject()
     {
         Destroy(gameObject);
@@ -50,5 +40,13 @@ public class ItemScript : MonoBehaviour, IPickable
     {
         interactable.OnInteraction -= PickUp;
         timer.OnTimerElapsed -= DespawnObject;
+    }
+
+    public void Sell()
+    {
+        if (GameManager.Instance)
+            GameManager.Instance.Player.GainMoney(sellValue);
+        Debug.Log($"Sold {gameObject.name} for {sellValue}$ !");
+        DespawnObject();
     }
 }
