@@ -1,10 +1,10 @@
 using PolskiPolakPL.Utils;
 using UnityEngine;
-using static UnityEditor.Progress;
 [RequireComponent(typeof(Interactable))]
 
 public class ItemScript : MonoBehaviour, IPickable, ISellable
 {
+    [SerializeField] ItemSO itemSO;
     [SerializeField] float lifeSpan = 60.0f;
     [SerializeField] float sellValue;
 

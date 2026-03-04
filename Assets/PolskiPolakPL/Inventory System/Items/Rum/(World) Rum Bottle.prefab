@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3163388934695622856}
   - component: {fileID: 3027065606797195336}
   m_Layer: 0
-  m_Name: Item
+  m_Name: (World) Rum Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5df963c0d71f24cb6c098f931e76b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSO: {fileID: 11400000, guid: e698120d23fa05445ad0df789e78ae38, type: 2}
   lifeSpan: 60
   sellValue: 5
 --- !u!65 &5778495625727171931
