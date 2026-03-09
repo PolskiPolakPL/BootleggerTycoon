@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
+  m_Name: Whiskey
+  m_EditorClassIdentifier: 
+  ID: 1
+  WorldPrefab: {fileID: 1537941091043133521, guid: 99504ed159fb03b4faef5f44e6a734ef, type: 3}
+  HandPrefab: {fileID: 1110514661002143620, guid: 87f4c378915ee2244b2ee86ce86ba9e7, type: 3}
+  isThrowable: 1
