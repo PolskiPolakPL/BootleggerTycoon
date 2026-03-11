@@ -16,6 +16,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField][Range(0, 1)] float selectedSlotOpacity = .8f;
     [SerializeField][Min(1)][Tooltip("How many items are in a single row of 'GameItems.png' file (or Render Texture).")] int itemsPNGArraySize = 10;
 
+    private int previousIndex = 0;
     private int selectedIndex = 0;
     private List<ItemSlot> itemSlots = new List<ItemSlot>();
 
@@ -27,6 +28,13 @@ public class InventorySystem : MonoBehaviour
             Instance = this;
 
         itemSlots.AddRange(playerHotbar.GetComponentsInChildren<ItemSlot>());
+        foreach(ItemSlot slot in itemSlots)
+        {
+            slot.UpdateSlot();
+        }
+        UpdateSelectedSlot();
+        UpdatePlayerHand();
+        previousIndex = selectedIndex;
     }
 
     private void Update()
@@ -83,9 +91,12 @@ public class InventorySystem : MonoBehaviour
                 selectedIndex = i;
         }
 
+        if(selectedIndex==previousIndex)
+            return;
         // Update UI Slot & Player Hand
         UpdateSelectedSlot();
         UpdatePlayerHand();
+        previousIndex = selectedIndex;
     }
 
     void UpdateSelectedSlot()

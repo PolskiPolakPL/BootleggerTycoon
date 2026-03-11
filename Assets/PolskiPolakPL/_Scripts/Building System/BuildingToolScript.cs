@@ -18,7 +18,8 @@ public class BuildingToolScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CastBuildingRay();
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+            CastBuildingRay();
     }
 
     void CastBuildingRay()

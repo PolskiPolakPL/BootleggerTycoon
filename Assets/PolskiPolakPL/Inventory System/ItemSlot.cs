@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemSlot : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class ItemSlot : MonoBehaviour
     public void SetItem(ItemData item)
     {
         heldItem = item;
-        itemRawImage.uvRect = InventorySystem.Instance.GetUVRectFromItemArray(item);
         UpdateSlot();
     }
 
@@ -22,6 +22,7 @@ public class ItemSlot : MonoBehaviour
     {
         if (HasItem())
         {
+            itemRawImage.uvRect = InventorySystem.Instance.GetUVRectFromItemArray(heldItem);
             itemRawImage.enabled = true;
         }
         else
