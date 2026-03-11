@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamT: {fileID: 1468109028}
-  buildingRange: 3
+  buildingRange: 5
   includeLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -1953,10 +1953,6 @@ PrefabInstance:
       propertyPath: dropTime
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 7933213691309126456, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
-      propertyPath: message
-      value: Pick Up
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2968,11 +2964,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7933213691309126456, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
-      propertyPath: message
-      value: Pick Up
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

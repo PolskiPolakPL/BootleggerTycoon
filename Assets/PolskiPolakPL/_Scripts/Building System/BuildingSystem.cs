@@ -13,10 +13,10 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField][Range(0,1)] float previewOpacity;
     [SerializeField][Tooltip("Angular speed of preview object when rotated. [deg/s]")] float rotateSpeed = 90;
 
-    GameObject previewGO;
-    Transform previousT;
-    Ray ray;
-    bool canPlace = false;
+    private GameObject previewGO;
+    private Transform previousT;
+    private Ray ray;
+    public bool canPlace { get; private set; } = false;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class BuildingSystem : MonoBehaviour
 
     void Update()
     {
-        if (!previewGO)
+        if (!HasPreview())
             return;
         UpdatePreviewPosition();
 
@@ -39,18 +39,13 @@ public class BuildingSystem : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Q))
             RotateStructure(-rotateSpeed * Time.deltaTime);
-        
-        if (Input.GetMouseButtonDown(0) && canPlace)
-            PlaceStructure();
 
         if (Input.GetMouseButtonDown(1))
-            UndoMovement();
+            CancelMovement();
     }
 
     public void PickUpStructure(StructureScript structureScr)
     {
-        if(previewGO)
-            return;
         previousT = structureScr.transform;
         previewGO = CreatePreview(structureScr.StructureSO);
         previewGO.transform.rotation = previousT.rotation;
@@ -63,7 +58,7 @@ public class BuildingSystem : MonoBehaviour
         previewGO.transform.Rotate(new Vector3(0, angle, 0));
     }
 
-    void PlaceStructure()
+    public void MoveStructure()
     {
         // Places new object and removes preview
         Transform preview = previewGO.transform;
@@ -74,7 +69,7 @@ public class BuildingSystem : MonoBehaviour
         Destroy(previewGO);
     }
 
-    void UndoMovement()
+    void CancelMovement()
     {
         previousT.gameObject.SetActive(true);
         previousT = null;
@@ -113,14 +108,19 @@ public class BuildingSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        if (!previewGO)
+        if (!HasPreview())
             return;
 
         if (previousT)
-            UndoMovement();
+            CancelMovement();
         else
         {
             Destroy(previewGO);
         }
+    }
+
+    public bool HasPreview()
+    {
+        return previewGO;
     }
 }

@@ -18,11 +18,23 @@ public class BuildingToolScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-            CastBuildingRay();
+        HandleLeftClick();
     }
 
-    void CastBuildingRay()
+    void HandleLeftClick()
+    {
+        if (!Input.GetKeyDown(KeyCode.Mouse0))
+            return;
+        // NO PREVIEW - Pick up
+        if (!buildingSystem.HasPreview())
+            TryPickUpStructure();
+
+        // PREVIEW & CAN PLACE - Place
+        else if(buildingSystem.canPlace)
+            buildingSystem.MoveStructure();
+    }
+
+    void TryPickUpStructure()
     {
         buildRay = new Ray(playerCamT.position, playerCamT.forward);
 
@@ -40,6 +52,8 @@ public class BuildingToolScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        if(!buildingSystem)
+            return;
         buildingSystem.gameObject.SetActive(false);
     }
 }
