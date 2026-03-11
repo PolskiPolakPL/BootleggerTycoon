@@ -116,6 +116,8 @@ public class InventorySystem : MonoBehaviour
             return false;
 
         ItemData itemData = selectedSlot.GetItemData();
+        if(!itemData.isThrowable)
+            return false;
 
         DropItem(itemData);
         selectedSlot.ClearSlot();

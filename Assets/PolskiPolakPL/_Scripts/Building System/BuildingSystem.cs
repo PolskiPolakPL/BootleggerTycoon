@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour
 {
+    public static BuildingSystem Instance { get; private set; }
+
     //player camera
     [SerializeField] Transform playerCamT;
-    [SerializeField] float buildingRange = 3;
+    public float buildingRange = 3;
     [SerializeField] LayerMask includeLayer;
 
     // preview
@@ -16,7 +18,6 @@ public class BuildingSystem : MonoBehaviour
     Ray ray;
     bool canPlace = false;
 
-    public static BuildingSystem Instance { get; private set; }
     private void Awake()
     {
         if(Instance && Instance!=this)
@@ -83,12 +84,14 @@ public class BuildingSystem : MonoBehaviour
     void UpdatePreviewPosition()
     {
         ray = new Ray(playerCamT.position, playerCamT.forward);
+        //Doesn't hit correct layer
         if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange, includeLayer))
         {
             previewGO.SetActive(false);
             canPlace = false;
             return;
         }
+        // else
         canPlace = true;
         previewGO.transform.position = hit.point;
         if (!previewGO.activeInHierarchy)
@@ -106,5 +109,18 @@ public class BuildingSystem : MonoBehaviour
             renderer.material = MaterialMaker.MakePreviewMaterial(renderer.material, previewOpacity);
         }
         return newGO;
+    }
+
+    private void OnDisable()
+    {
+        if (!previewGO)
+            return;
+
+        if (previousT)
+            UndoMovement();
+        else
+        {
+            Destroy(previewGO);
+        }
     }
 }

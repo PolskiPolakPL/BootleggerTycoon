@@ -6,6 +6,4 @@ public class StructureSO : ScriptableObject
     public GameObject StructurePrefab;
     public GameObject StructureModel;
     public string Name;
-    public float[] BuildingCost; //building cost per level
-    public float SellValueMultiplier; //part of cost value per level
 }
