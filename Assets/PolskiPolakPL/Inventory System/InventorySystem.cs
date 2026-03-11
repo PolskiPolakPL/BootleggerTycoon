@@ -51,6 +51,7 @@ public class InventorySystem : MonoBehaviour
         if (!selectedSlot.HasItem())
         {
             selectedSlot.SetItem(item);
+            UpdatePlayerHand();
             return true;
         }
         //Try putting item in any slot
