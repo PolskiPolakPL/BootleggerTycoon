@@ -41,15 +41,4 @@ public class ItemSlot : MonoBehaviour
         return heldItem != null;
     }
 
-    Rect GetUVRectFromItemArray(int itemArraySize)
-    {
-        float stepSize = 1f / itemArraySize;
-        int rowIndex = heldItem.ID / itemArraySize;
-        int columnIndex = heldItem.ID % itemArraySize;
-        float x = stepSize * columnIndex;
-        float y = stepSize * rowIndex;
-        Debug.Log($"X: {x} \t Y: {y} \t stepSize: {stepSize}");
-        return new Rect(x, y, stepSize, stepSize);
-    }
-
 }
