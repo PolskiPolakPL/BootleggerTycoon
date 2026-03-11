@@ -253,7 +253,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1177427603}
+    m_TransformParent: {fileID: 1525964674}
     m_Modifications:
     - target: {fileID: 4699816545761054369, guid: 46061748264a4914f8a4ecd1fc4eb67c, type: 3}
       propertyPath: m_Name
@@ -266,6 +266,10 @@ PrefabInstance:
     - target: {fileID: 7022317388737366800, guid: 46061748264a4914f8a4ecd1fc4eb67c, type: 3}
       propertyPath: m_AllowMSAA
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246026474280187381, guid: 46061748264a4914f8a4ecd1fc4eb67c, type: 3}
+      propertyPath: m_Name
+      value: Game Items
       objectReference: {fileID: 0}
     - target: {fileID: 9029228106493104117, guid: 46061748264a4914f8a4ecd1fc4eb67c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -751,6 +755,10 @@ PrefabInstance:
       propertyPath: playerHand
       value: 
       objectReference: {fileID: 868886253}
+    - target: {fileID: 3379723055582501934, guid: 937d6295289275f4aa3bc93fb169f92a, type: 3}
+      propertyPath: playerHotbar
+      value: 
+      objectReference: {fileID: 703154331}
     - target: {fileID: 3918839986692765540, guid: 937d6295289275f4aa3bc93fb169f92a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1768,7 +1776,7 @@ Transform:
   m_Children:
   - {fileID: 653801044}
   - {fileID: 173047085}
-  - {fileID: 1978754977}
+  - {fileID: 1525964674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1206622335
@@ -2175,6 +2183,57 @@ MonoBehaviour:
   cameraT: {fileID: 1468109028}
   playerReach: 2
   interactionKey: 101
+--- !u!1 &1525964673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525964674}
+  - component: {fileID: 1525964675}
+  m_Layer: 0
+  m_Name: Inventory System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1525964674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525964673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1978754977}
+  m_Father: {fileID: 1177427603}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1525964675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525964673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584fa207078b3b445a6c4395bfd2f1dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHand: {fileID: 868886253}
+  throwingForce: 3
+  playerHotbar: {fileID: 703154331}
+  normalSlotOpacity: 0.6
+  selectedSlotOpacity: 0.8
+  itemsPNGArraySize: 10
 --- !u!1001 &1549406276
 PrefabInstance:
   m_ObjectHideFlags: 0

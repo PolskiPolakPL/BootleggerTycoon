@@ -5,17 +5,19 @@ using UnityEngine.UI;
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance {  get; private set; }
-    [Header("Player Hand")]
+
+    //PLAYER HAND
     [SerializeField] Transform playerHand;
     [SerializeField] float throwingForce = 5;
-    [Header("UI")]
-    [SerializeField] Transform slotsParent;
-    [SerializeField][Range(0,1)] float normalOpacity = .6f;
-    [SerializeField][Range(0, 1)] float selectedOpacity = .8f;
-    [SerializeField] Rect baseUIRect;
+    
+    // HOTBAR
+    [SerializeField] Transform playerHotbar;
+    [SerializeField][Range(0,1)] float normalSlotOpacity = .6f;
+    [SerializeField][Range(0, 1)] float selectedSlotOpacity = .8f;
+    [SerializeField][Min(1)][Tooltip("How many items are in a single row of 'GameItems.png' file (or Render Texture).")] int itemsPNGArraySize = 10;
 
-    int selectedIndex = 0;
-    List<ItemSlot> itemSlots = new List<ItemSlot>();
+    private int selectedIndex = 0;
+    private List<ItemSlot> itemSlots = new List<ItemSlot>();
 
     private void Awake()
     {
@@ -24,13 +26,14 @@ public class InventorySystem : MonoBehaviour
         else
             Instance = this;
 
-        itemSlots.AddRange(slotsParent.GetComponentsInChildren<ItemSlot>());
+        itemSlots.AddRange(playerHotbar.GetComponentsInChildren<ItemSlot>());
     }
 
     private void Update()
     {
         HandleHotbarSelection();
-        HandleItemDropping();
+        if(Input.GetKeyDown(KeyCode.G))
+            TryDropItem(itemSlots[selectedIndex]);
     }
 
     public bool AddItem(ItemData item)
@@ -80,9 +83,9 @@ public class InventorySystem : MonoBehaviour
                 selectedIndex = i;
         }
 
-        //item opacity + item in hand
+        // Update UI Slot & Player Hand
         UpdateSelectedSlot();
-        SetItemInHand();
+        UpdatePlayerHand();
     }
 
     void UpdateSelectedSlot()
@@ -92,13 +95,13 @@ public class InventorySystem : MonoBehaviour
         {
             bgImage = itemSlots[i].GetComponent<Image>();
             if (i == selectedIndex)
-                bgImage.color = new Color(0, 0, 0, selectedOpacity);
+                bgImage.color = new Color(0, 0, 0, selectedSlotOpacity);
             else
-                bgImage.color = new Color(0,0,0,normalOpacity);
+                bgImage.color = new Color(0,0,0,normalSlotOpacity);
         }
     }
 
-    void SetItemInHand()
+    void UpdatePlayerHand()
     {
         ItemSlot selectedSlot = itemSlots[selectedIndex];
         foreach (Transform child in playerHand)
@@ -107,41 +110,43 @@ public class InventorySystem : MonoBehaviour
             Instantiate(selectedSlot.GetItemData().HandPrefab, playerHand);
     }
 
-    void HandleItemDropping()
+    bool TryDropItem(ItemSlot selectedSlot)
     {
-        if(!Input.GetKeyDown(KeyCode.G))
-            return;
-        ItemSlot selectedSlot = itemSlots[selectedIndex];
         if (!selectedSlot.HasItem())
-            return;
+            return false;
 
         ItemData itemData = selectedSlot.GetItemData();
+
+        DropItem(itemData);
+        selectedSlot.ClearSlot();
+        return true;
+    }
+
+    void DropItem(ItemData itemData)
+    {
         // Remove hand item prefab
         GameObject handPrefab = playerHand.GetChild(0).gameObject;
         Destroy(handPrefab);
-
         // Create and throw world item prefab
         GameObject droppedItemGo = Instantiate(itemData.WorldPrefab, playerHand.position, playerHand.rotation);
         droppedItemGo.GetComponent<Rigidbody>().AddForce(playerHand.forward * throwingForce, ForceMode.Impulse);
-
-        selectedSlot.ClearSlot();
     }
 
     public Rect GetUVRectFromItemArray(ItemData item)
     {
         Vector2 arrayPosition = IdToArrayPosition(item);
-        float x = baseUIRect.x * arrayPosition.x;
-        float y = baseUIRect.y * arrayPosition.y;
+        float step = 1/(float)itemsPNGArraySize;
+        float x = step * arrayPosition.x;
+        float y = step * arrayPosition.y;
         Debug.Log($"X: {x} \t Y: {y}");
-        return new Rect(x, y, baseUIRect.width, baseUIRect.height);
+        return new Rect(x, y, step, step);
     }
 
     Vector2 IdToArrayPosition(ItemData item)
     {
         Vector2 arrayPosition;
-        int rowSize = Mathf.RoundToInt(1 / baseUIRect.width);
-        arrayPosition.x = (float)item.ID%rowSize;
-        arrayPosition.y = Mathf.Floor((float)item.ID/rowSize);
+        arrayPosition.x = (float)item.ID%itemsPNGArraySize;
+        arrayPosition.y = Mathf.Floor((float)item.ID/ itemsPNGArraySize);
         return arrayPosition;
     }
 
