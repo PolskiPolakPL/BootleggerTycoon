@@ -10,7 +10,8 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] LayerMask includeLayer;
 
     // preview
-    [SerializeField][Range(0,1)] float previewOpacity;
+    [SerializeField] Material validMaterial;
+    [SerializeField] Material invalidMaterial;
     [SerializeField][Tooltip("Angular speed of preview object when rotated. [deg/s]")] float rotateSpeed = 90;
 
     private GameObject previewGO;
@@ -82,12 +83,14 @@ public class BuildingSystem : MonoBehaviour
         //Doesn't hit correct layer
         if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange, includeLayer))
         {
-            previewGO.SetActive(false);
             canPlace = false;
+            SetPreviewMaterial(previewGO);
+            previewGO.SetActive(false);
             return;
         }
         // else
         canPlace = true;
+        SetPreviewMaterial(previewGO);
         previewGO.transform.position = hit.point;
         if (!previewGO.activeInHierarchy)
             previewGO.SetActive(true);
@@ -98,12 +101,22 @@ public class BuildingSystem : MonoBehaviour
         GameObject newGO = Instantiate(structureData.StructureModel, transform);
         newGO.name = $"[Preview] {structureData.Name}";
         newGO.layer = LayerMask.NameToLayer("Preview");
-        Renderer[] renderers = newGO.GetComponentsInChildren<Renderer>();
+        SetPreviewMaterial(newGO);
+        return newGO;
+    }
+
+    void SetPreviewMaterial(GameObject targetGO)
+    {
+        Material material;
+        if (canPlace)
+            material = validMaterial;
+        else
+            material = invalidMaterial;
+        Renderer[] renderers = targetGO.GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in renderers)
         {
-            renderer.material = MaterialMaker.MakePreviewMaterial(renderer.material, previewOpacity);
+            renderer.material = material;
         }
-        return newGO;
     }
 
     private void OnDisable()
