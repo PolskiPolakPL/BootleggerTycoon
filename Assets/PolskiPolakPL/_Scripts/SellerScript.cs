@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 public class SellerScript : MonoBehaviour
 {
-    void SellItem(Item item)
+    void SellItem(ItemScript item)
     {
         if(GameManager.Instance)
             GameManager.Instance.Player.GainMoney(item.GetSellValue());
@@ -12,8 +11,8 @@ public class SellerScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        Item item;
-        if(other.gameObject.TryGetComponent<Item>(out item))
+        ItemScript item;
+        if(other.gameObject.TryGetComponent<ItemScript>(out item))
         SellItem(item);
     }
 }

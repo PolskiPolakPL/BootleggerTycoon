@@ -1,44 +1,22 @@
 using UnityEngine;
-
-public class StructureScript : MonoBehaviour
+[RequireComponent(typeof(Interactable))]
+public class StructureScript : MonoBehaviour, IPickable
 {
     public StructureSO StructureSO;
-    float currentCost;
-    float returnVal;
-    float[] levelCosts;
-    bool isUpgrateable;
-    int currentLevel = 0;
-    int maxLevel;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Interactable interactable;
+
+    private void OnValidate()
     {
-        levelCosts = StructureSO.BuildingCost;
-        maxLevel = levelCosts.Length-1;
-        returnVal = GetCurrentSellVal();
-        CheckUpgrades();
+        interactable = GetComponent<Interactable>();
     }
 
-    void CheckUpgrades()
+    private void Awake()
     {
-        if (currentLevel<maxLevel)
-            isUpgrateable = true;
-        else
-            isUpgrateable = false;
+        interactable.OnInteraction += PickUp;
     }
 
-    public float GetCurrentCost()
+    public void PickUp()
     {
-        return levelCosts[currentLevel];
-    }
-
-    public float GetCurrentSellVal()
-    {
-        return currentCost * StructureSO.SellValueMultiplier;
-    }
-
-    public void Sell()
-    {
-        Debug.Log($"Sold {StructureSO.Name} for {GetCurrentSellVal()}");
-        Destroy(gameObject);
+        BuildingSystem.Instance.PickUpStructure(this);
     }
 }
