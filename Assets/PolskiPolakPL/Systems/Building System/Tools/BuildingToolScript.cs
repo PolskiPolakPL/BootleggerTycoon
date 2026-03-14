@@ -73,6 +73,7 @@ public class BuildingToolScript : MonoBehaviour
     {
         if(!buildingSystem)
             return;
+        buildingSystem.CancelMovement();
         DisableCurrentStructure();
     }
 }

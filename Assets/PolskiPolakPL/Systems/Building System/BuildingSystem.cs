@@ -70,7 +70,7 @@ public class BuildingSystem : MonoBehaviour
         Destroy(previewGO);
     }
 
-    void CancelMovement()
+    public void CancelMovement()
     {
         previousT.gameObject.SetActive(true);
         previousT = null;
