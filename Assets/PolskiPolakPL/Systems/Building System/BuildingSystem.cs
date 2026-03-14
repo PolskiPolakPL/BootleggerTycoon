@@ -67,14 +67,17 @@ public class BuildingSystem : MonoBehaviour
         previousT.rotation = preview.rotation;
         previousT.gameObject.SetActive(true);
         previousT = null;
-        Destroy(previewGO);
+        DestroyPreview();
     }
 
     public void CancelMovement()
     {
-        previousT.gameObject.SetActive(true);
-        previousT = null;
-        Destroy(previewGO);
+        if (previousT)
+        {
+            previousT.gameObject.SetActive(true);
+            previousT = null;
+        }
+        DestroyPreview();
     }
 
     void UpdatePreviewPosition()
@@ -129,8 +132,14 @@ public class BuildingSystem : MonoBehaviour
             CancelMovement();
         else
         {
-            Destroy(previewGO);
+            DestroyPreview();
         }
+    }
+
+    void DestroyPreview()
+    {
+        if (previewGO)
+            Destroy(previewGO);
     }
 
     public bool HasPreview()
