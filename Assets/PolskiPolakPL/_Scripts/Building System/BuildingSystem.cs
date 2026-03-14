@@ -115,6 +115,7 @@ public class BuildingSystem : MonoBehaviour
         Renderer[] renderers = targetGO.GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in renderers)
         {
+            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             renderer.material = material;
         }
     }
