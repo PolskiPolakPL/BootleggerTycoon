@@ -25,4 +25,10 @@ public class StructureScript : MonoBehaviour, IPickable
     {
         outline.enabled = true;
     }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance)
+            GameManager.Instance.Player.GainMoney(StructureSO.Cost);
+    }
 }

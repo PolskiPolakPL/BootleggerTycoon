@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamT: {fileID: 1468109028}
   buildingRange: 5
-  includeLayer:
+  <buildOnLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
   validMaterial: {fileID: 2100000, guid: 856538f364944254fa2e657272d149b5, type: 2}

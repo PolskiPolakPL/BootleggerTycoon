@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: Seller
   m_EditorClassIdentifier: 
   StructurePrefab: {fileID: 8446951979300456100, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
-  StructureModel: {fileID: 2663167406076499340, guid: 714d7a6fd8528e84cb576bc15f57dadb, type: 3}
+  PreviewPrefab: {fileID: 2922183776359071499, guid: 6f2aced4df5bc814daa87057985a862d, type: 3}
+  Cost: 0
   Name: Seller
-  BuildingCost:
-  - 500
-  - 1000
-  - 5000
-  SellValueMultiplier: 0.9

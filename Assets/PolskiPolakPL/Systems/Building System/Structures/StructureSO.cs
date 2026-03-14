@@ -4,6 +4,7 @@ using UnityEngine;
 public class StructureSO : ScriptableObject
 {
     public GameObject StructurePrefab;
-    public GameObject StructureModel;
+    public GameObject PreviewPrefab;
+    public float Cost;
     public string Name;
 }

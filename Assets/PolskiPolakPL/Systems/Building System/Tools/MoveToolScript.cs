@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuildingToolScript : BaseTool
+public class MoveToolScript : BaseTool
 {
     // Start is called before the first frame update
     void Start()

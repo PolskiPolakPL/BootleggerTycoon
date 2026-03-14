@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: Conveyor
   m_EditorClassIdentifier: 
   StructurePrefab: {fileID: 882337288971869400, guid: 5d9418e0e08aed54396d52327e602672, type: 3}
-  StructureModel: {fileID: 4539303934668081843, guid: f8ee62b2f999baf4a987d3f0996c21c6, type: 3}
+  PreviewPrefab: {fileID: 9000711928200760782, guid: 7e170046804b94f4492a2b8dc6ebc6c6, type: 3}
+  Cost: 0
   Name: Conveyor
-  BuildingCost:
-  - 10
-  - 50
-  SellValueMultiplier: 1

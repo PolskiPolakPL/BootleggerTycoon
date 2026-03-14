@@ -7,7 +7,7 @@ public class BuildingSystem : MonoBehaviour
     //player camera
     [SerializeField] Transform playerCamT;
     public float buildingRange = 3;
-    [SerializeField] LayerMask includeLayer;
+    [field:SerializeField] public LayerMask buildOnLayer { get; private set; }
 
     // preview
     [SerializeField] Material validMaterial;
@@ -48,7 +48,7 @@ public class BuildingSystem : MonoBehaviour
     public void PickUpStructure(StructureScript structureScr)
     {
         previousT = structureScr.transform;
-        previewGO = CreatePreview(structureScr.StructureSO);
+        CreatePreview(structureScr.StructureSO);
         previewGO.transform.rotation = previousT.rotation;
         // Temporarily hides prevoius object
         previousT.gameObject.SetActive(false);
@@ -70,55 +70,68 @@ public class BuildingSystem : MonoBehaviour
         DestroyPreview();
     }
 
-    public void CancelMovement()
-    {
-        if (previousT)
-        {
-            previousT.gameObject.SetActive(true);
-            previousT = null;
-        }
-        DestroyPreview();
-    }
-
     void UpdatePreviewPosition()
     {
         ray = new Ray(playerCamT.position, playerCamT.forward);
         //Doesn't hit correct layer
-        if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange, includeLayer))
+        if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange, buildOnLayer))
         {
-            canPlace = false;
-            SetPreviewMaterial(previewGO);
+            DenyPlacement();
             previewGO.SetActive(false);
             return;
         }
         // else
-        canPlace = true;
-        SetPreviewMaterial(previewGO);
+        CheckValidPlacement();
         previewGO.transform.position = hit.point;
         if (!previewGO.activeInHierarchy)
             previewGO.SetActive(true);
     }
 
-    public GameObject CreatePreview(StructureSO structureData)
+    void CheckValidPlacement()
     {
-        GameObject newGO = Instantiate(structureData.StructureModel, transform);
-        newGO.name = $"[Preview] {structureData.Name}";
-        newGO.layer = LayerMask.NameToLayer("Preview");
-        SetPreviewMaterial(newGO);
-        return newGO;
+        PrewiewScript previewScr;
+        if(!previewGO.TryGetComponent<PrewiewScript>(out previewScr))
+        {
+            Debug.LogWarning("Preview has no PreviewScript!");
+            return;
+        }
+        if (previewScr.IsValid())
+            AllowPlacement();
+        else
+            DenyPlacement();
     }
 
-    void SetPreviewMaterial(GameObject targetGO)
+    void DenyPlacement()
+    {
+        if (!canPlace)
+            return;
+        canPlace = false;
+        SetPreviewMaterial(false);
+    }
+    void AllowPlacement()
+    {
+        if (canPlace)
+            return;
+        canPlace = true;
+        SetPreviewMaterial(true);
+    }
+
+    public void CreatePreview(StructureSO structureData)
+    {
+        previewGO = Instantiate(structureData.PreviewPrefab, transform);
+        SetPreviewMaterial(canPlace);
+    }
+
+    void SetPreviewMaterial(bool isValid)
     {
         Material material;
-        if (canPlace)
+        if (isValid)
             material = validMaterial;
         else
             material = invalidMaterial;
-        Renderer[] renderers = targetGO.GetComponentsInChildren<Renderer>();
+        Renderer[] renderers = previewGO.GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in renderers)
         {
-            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             renderer.material = material;
         }
     }
@@ -128,12 +141,18 @@ public class BuildingSystem : MonoBehaviour
         if (!HasPreview())
             return;
 
+        CancelMovement();
+        DestroyPreview();
+    }
+
+    public void CancelMovement()
+    {
         if (previousT)
-            CancelMovement();
-        else
         {
-            DestroyPreview();
+            previousT.gameObject.SetActive(true);
+            previousT = null;
         }
+        DestroyPreview();
     }
 
     void DestroyPreview()
