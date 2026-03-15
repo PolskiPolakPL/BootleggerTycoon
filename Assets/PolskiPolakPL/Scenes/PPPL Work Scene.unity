@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: heldItem
       value: 
       objectReference: {fileID: 11400000, guid: b9797aaa939c727449a56a71b60d415c, type: 2}
+    - target: {fileID: 7522324866013158275, guid: 937d6295289275f4aa3bc93fb169f92a, type: 3}
+      propertyPath: heldItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 394c33e44c7e39048924a3317ea268cc, type: 2}
     - target: {fileID: 7563855087222637909, guid: 937d6295289275f4aa3bc93fb169f92a, type: 3}
       propertyPath: m_Name
       value: Hotbar
@@ -1104,6 +1108,11 @@ PrefabInstance:
       addedObject: {fileID: 974207163}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 937d6295289275f4aa3bc93fb169f92a, type: 3}
+--- !u!4 &739754088 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+  m_PrefabInstance: {fileID: 1866416956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &754667273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1834,63 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &988502455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.378
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.606
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8793164
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4762382
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 56.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281835166623229194, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_Name
+      value: (World) Dropper Box
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
 --- !u!4 &1028536155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f75160e86365071429e88baf8a8f58dd, type: 3}
@@ -2720,6 +2786,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a5f974d0f0e28641a6cbe09f4b585cb, type: 3}
+--- !u!1001 &1557729056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.0400243
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.0143517
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.88773507
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.46035472
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -54.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281835166623229194, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_Name
+      value: (World) Dropper Box (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
 --- !u!1 &1579046145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +3102,63 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &1866416956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1979500405}
+    m_Modifications:
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125629561568094057, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281835166623229194, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
+      propertyPath: m_Name
+      value: (World) Dropper Box
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}
 --- !u!1 &1901844475
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,6 +3377,7 @@ Transform:
   - {fileID: 1305148588}
   - {fileID: 875307314}
   - {fileID: 754667274}
+  - {fileID: 739754088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1998634882
@@ -3378,3 +3559,5 @@ SceneRoots:
   - {fileID: 1579046146}
   - {fileID: 1979500405}
   - {fileID: 360553564}
+  - {fileID: 988502455}
+  - {fileID: 1557729056}

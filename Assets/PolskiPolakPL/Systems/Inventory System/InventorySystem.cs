@@ -72,6 +72,12 @@ public class InventorySystem : MonoBehaviour
         Debug.Log("Inventory full!");
         return false;
     }
+    public void ClearSelectedSlot()
+    {
+        ItemSlot selectedSlot = itemSlots[selectedIndex];
+        if (selectedSlot.HasItem())
+            selectedSlot.ClearSlot();
+    }
 
     void HandleHotbarSelection()
     {

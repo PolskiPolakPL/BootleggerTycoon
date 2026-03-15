@@ -41,7 +41,7 @@ public class BuildingSystem : MonoBehaviour
         if(Input.GetKey(KeyCode.Q))
             RotateStructure(-rotateSpeed * Time.deltaTime);
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && previousT)
             CancelPlacement();
     }
 
@@ -68,6 +68,16 @@ public class BuildingSystem : MonoBehaviour
         previousT.gameObject.SetActive(true);
         previousT = null;
         DestroyPreview();
+    }
+
+    public bool PlaceStructure(StructureSO structureData)
+    {
+        if (!previewGO || !canPlace)
+            return false;
+        Transform previewT = previewGO.transform;
+        Instantiate(structureData.StructurePrefab, previewT.position, previewT.rotation);
+        DestroyPreview();
+        return true;
     }
 
     void UpdatePreviewPosition()

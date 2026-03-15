@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3620820859870479370}
   - component: {fileID: -1613998023747851513}
   m_Layer: 0
-  m_Name: (World) Structure Box
+  m_Name: (World) Dropper Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a6e829f833e32419e7aaf4d153e302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 394c33e44c7e39048924a3317ea268cc, type: 2}
 --- !u!114 &-2977185337930434461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,8 +109,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.4, y: 0.3, z: 0.5}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!114 &-1613998023747851513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1597032825110266855, guid: 429a83bf3f63f7e4e9a4a27c576b827b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1597032825110266855, guid: 429a83bf3f63f7e4e9a4a27c576b827b, type: 3}
       propertyPath: m_LocalPosition.z

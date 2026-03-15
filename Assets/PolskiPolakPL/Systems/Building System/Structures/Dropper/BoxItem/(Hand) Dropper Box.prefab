@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6600149686190910291}
   - component: {fileID: -3585480552070135990}
   m_Layer: 0
-  m_Name: (Hand) Structure Box
+  m_Name: (Hand) Dropper Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61db0059840169046892d93a60f6a510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structureSO: {fileID: 0}
+  structureSO: {fileID: 11400000, guid: 8ab03ffa727c2f342ad9adabd21327cb, type: 2}
 --- !u!1001 &3829156030009413991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1597032825110266855, guid: 429a83bf3f63f7e4e9a4a27c576b827b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1597032825110266855, guid: 429a83bf3f63f7e4e9a4a27c576b827b, type: 3}
       propertyPath: m_LocalPosition.z
