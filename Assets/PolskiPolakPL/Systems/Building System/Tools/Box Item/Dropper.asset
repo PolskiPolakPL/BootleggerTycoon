@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
+  m_Name: Dropper
+  m_EditorClassIdentifier: 
+  ID: 11
+  DisplayName: Dropper
+  WorldPrefab: {fileID: 8281835166623229194, guid: ffcbd5c31e69a304b9dec89eee2e46ab, type: 3}
+  HandPrefab: {fileID: 7185101738303505001, guid: c6af5a4d75236434a9595eea95fa9e52, type: 3}
+  isThrowable: 1

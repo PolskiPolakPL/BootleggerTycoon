@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3992365869319027443}
+  - component: {fileID: 1979448106877785849}
+  - component: {fileID: 1264453275356696146}
+  - component: {fileID: 3027065606797195336}
   - component: {fileID: 5778495625727171931}
   - component: {fileID: 500728253922352933}
   - component: {fileID: 3163388934695622856}
-  - component: {fileID: 3027065606797195336}
-  - component: {fileID: 1979448106877785849}
   m_Layer: 0
   m_Name: (World) Rum Bottle
   m_TagString: Untagged
@@ -37,6 +38,46 @@ Transform:
   - {fileID: 8055492601869074361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1979448106877785849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347278087823679329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6e829f833e32419e7aaf4d153e302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 4a1a05b0698ccb14e9c0b27cb1f2e99a, type: 2}
+--- !u!114 &1264453275356696146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347278087823679329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6600049309e034787a9b14ebd9355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSpan: 60
+  sellValue: 5
+--- !u!114 &3027065606797195336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347278087823679329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25560f2ef01ab3840858582c2a242d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Pick Up
 --- !u!65 &5778495625727171931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -901,34 +942,6 @@ MonoBehaviour:
     - {x: 0.1758729, y: -0.03498219, z: -0.9837911}
     - {x: 0.6661433, y: -0.13250293, z: -0.7339592}
     - {x: 0.17931837, y: 0.00000014209422, z: -0.9837911}
---- !u!114 &3027065606797195336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347278087823679329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25560f2ef01ab3840858582c2a242d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  message: Pick Up
---- !u!114 &1979448106877785849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347278087823679329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6e829f833e32419e7aaf4d153e302, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 4a1a05b0698ccb14e9c0b27cb1f2e99a, type: 2}
-  lifeSpan: 60
-  sellValue: 5
 --- !u!1001 &7512112660998789202
 PrefabInstance:
   m_ObjectHideFlags: 0

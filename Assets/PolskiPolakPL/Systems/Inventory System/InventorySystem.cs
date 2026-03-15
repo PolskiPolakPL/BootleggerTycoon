@@ -36,13 +36,15 @@ public class InventorySystem : MonoBehaviour
         }
         UpdateSelectedSlot();
         UpdatePlayerHand();
+        UpdateItemDisplay();
         previousIndex = selectedIndex;
     }
 
     private void Update()
     {
         HandleHotbarSelection();
-        if(Input.GetKeyDown(KeyCode.G))
+        UpdateItemDisplay();
+        if (Input.GetKeyDown(KeyCode.G))
             TryDropItem(itemSlots[selectedIndex]);
     }
 
@@ -113,6 +115,10 @@ public class InventorySystem : MonoBehaviour
             else
                 bgImage.color = new Color(0,0,0,normalSlotOpacity);
         }
+    }
+
+    void UpdateItemDisplay()
+    {
         if (!itemDisplay)
             return;
         ItemData selectedItem = itemSlots[selectedIndex].GetItemData();

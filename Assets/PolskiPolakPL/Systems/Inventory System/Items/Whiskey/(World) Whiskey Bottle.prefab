@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4454888805296652532}
+  - component: {fileID: 6153968735237254586}
+  - component: {fileID: 1674330373139678827}
+  - component: {fileID: 381505416254238954}
   - component: {fileID: 6486325225333951932}
   - component: {fileID: 241291829099583708}
   - component: {fileID: 1883161887243630935}
-  - component: {fileID: 381505416254238954}
-  - component: {fileID: 1674330373139678827}
   m_Layer: 0
   m_Name: (World) Whiskey Bottle
   m_TagString: Untagged
@@ -37,6 +38,46 @@ Transform:
   - {fileID: 7215389866573544413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6153968735237254586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537941091043133521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6600049309e034787a9b14ebd9355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSpan: 60
+  sellValue: 15
+--- !u!114 &1674330373139678827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537941091043133521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6e829f833e32419e7aaf4d153e302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 33a75a6ea2434f0409f5a57ceb5050be, type: 2}
+--- !u!114 &381505416254238954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537941091043133521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25560f2ef01ab3840858582c2a242d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Pick Up
 --- !u!65 &6486325225333951932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -901,34 +942,6 @@ MonoBehaviour:
     - {x: 0.1758729, y: -0.03498219, z: -0.9837911}
     - {x: 0.6661433, y: -0.13250293, z: -0.7339592}
     - {x: 0.17931837, y: 0.00000014209422, z: -0.9837911}
---- !u!114 &381505416254238954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537941091043133521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25560f2ef01ab3840858582c2a242d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  message: Pick Up
---- !u!114 &1674330373139678827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537941091043133521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6e829f833e32419e7aaf4d153e302, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 33a75a6ea2434f0409f5a57ceb5050be, type: 2}
-  lifeSpan: 60
-  sellValue: 10
 --- !u!1001 &7181147556077689910
 PrefabInstance:
   m_ObjectHideFlags: 0
