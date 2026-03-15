@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StructurePrefab: {fileID: 8446951979300456100, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
   PreviewPrefab: {fileID: 2922183776359071499, guid: 6f2aced4df5bc814daa87057985a862d, type: 3}
-  Cost: 0
+  Cost: 60
   Name: Seller
