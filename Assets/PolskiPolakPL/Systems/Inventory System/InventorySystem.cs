@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class InventorySystem : MonoBehaviour
     
     // HOTBAR
     [SerializeField] Transform playerHotbar;
+    [SerializeField] TMP_Text itemDisplay;
     [SerializeField][Range(0,1)] float normalSlotOpacity = .6f;
     [SerializeField][Range(0, 1)] float selectedSlotOpacity = .8f;
     [SerializeField][Min(1)][Tooltip("How many items are in a single row of 'GameItems.png' file (or Render Texture).")] int itemsPNGArraySize = 10;
@@ -111,6 +113,13 @@ public class InventorySystem : MonoBehaviour
             else
                 bgImage.color = new Color(0,0,0,normalSlotOpacity);
         }
+        if (!itemDisplay)
+            return;
+        ItemData selectedItem = itemSlots[selectedIndex].GetItemData();
+        if (selectedItem)
+            itemDisplay.text = selectedItem.DisplayName;
+        else
+            itemDisplay.text = "";
     }
 
     void UpdatePlayerHand()

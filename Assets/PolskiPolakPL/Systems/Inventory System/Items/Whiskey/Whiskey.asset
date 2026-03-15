@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Whiskey
   m_EditorClassIdentifier: 
   ID: 1
+  DisplayName: Whiskey
   WorldPrefab: {fileID: 1537941091043133521, guid: 99504ed159fb03b4faef5f44e6a734ef, type: 3}
   HandPrefab: {fileID: 1110514661002143620, guid: 87f4c378915ee2244b2ee86ce86ba9e7, type: 3}
   isThrowable: 1

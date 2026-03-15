@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rum Bottle
   m_EditorClassIdentifier: 
   ID: 0
+  DisplayName: Rum
   WorldPrefab: {fileID: 1347278087823679329, guid: 3b8c0787a46421a4fbce30b26f0f5c72, type: 3}
   HandPrefab: {fileID: 6158738615890573201, guid: ef3917cee3a63b3449cb6cdc8dbe5905, type: 3}
   isThrowable: 1

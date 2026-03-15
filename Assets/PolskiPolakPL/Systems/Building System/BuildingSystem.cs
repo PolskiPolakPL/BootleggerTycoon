@@ -42,7 +42,7 @@ public class BuildingSystem : MonoBehaviour
             RotateStructure(-rotateSpeed * Time.deltaTime);
 
         if (Input.GetMouseButtonDown(1))
-            CancelMovement();
+            CancelPlacement();
     }
 
     public void PickUpStructure(StructureScript structureScr)
@@ -136,16 +136,7 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        if (!HasPreview())
-            return;
-
-        CancelMovement();
-        DestroyPreview();
-    }
-
-    public void CancelMovement()
+    public void CancelPlacement()
     {
         if (previousT)
         {
@@ -159,6 +150,7 @@ public class BuildingSystem : MonoBehaviour
     {
         if (previewGO)
             Destroy(previewGO);
+        previewGO = null;
     }
 
     public bool HasPreview()

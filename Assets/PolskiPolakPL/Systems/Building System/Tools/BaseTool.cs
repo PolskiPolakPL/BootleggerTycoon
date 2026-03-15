@@ -15,7 +15,6 @@ public class BaseTool : MonoBehaviour
     protected void InitializeTool()
     {
         BuildSys = BuildingSystem.Instance;
-        BuildSys.gameObject.SetActive(true);
         playerCamT = Camera.main.transform;
         range = BuildSys.buildingRange;
     }
@@ -56,7 +55,8 @@ public class BaseTool : MonoBehaviour
     {
         if (!BuildSys)
             return;
-        BuildSys.gameObject.SetActive(false);
+        if (BuildSys.HasPreview())
+            BuildSys.CancelPlacement();
         DisableCurrentStructure();
     }
 

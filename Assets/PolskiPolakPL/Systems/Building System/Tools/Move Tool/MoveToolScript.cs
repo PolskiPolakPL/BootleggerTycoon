@@ -21,11 +21,16 @@ public class MoveToolScript : BaseTool
             return;
         // NO PREVIEW - Pick up
         if (!BuildSys.HasPreview() && SelectedStructure)
+        {
             SelectedStructure.PickUp();
-
+            return;
+        }
         // PREVIEW & CAN PLACE - Place
-        else if(BuildSys.canPlace)
+        if(BuildSys.HasPreview() && BuildSys.canPlace)
+        {
             BuildSys.MoveStructure();
+            return;
+        }
     }
 
     private void OnDestroy()

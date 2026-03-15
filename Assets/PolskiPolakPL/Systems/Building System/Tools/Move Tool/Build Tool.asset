@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Build Tool
   m_EditorClassIdentifier: 
   ID: 10
+  DisplayName: Moving Tool
   WorldPrefab: {fileID: 0}
   HandPrefab: {fileID: 3826616073077357950, guid: ccb260117da95904aa26c20f90578128, type: 3}
   isThrowable: 0
