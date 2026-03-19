@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BaseTool : MonoBehaviour
 {
-    //Building Ssytem
+    //Building System
     protected BuildingSystem BuildSys { get; private set; }
     protected StructureScript SelectedStructure {  get; private set; }
     StructureScript newStructure;

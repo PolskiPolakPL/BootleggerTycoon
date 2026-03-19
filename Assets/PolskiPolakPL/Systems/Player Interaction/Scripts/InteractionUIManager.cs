@@ -6,6 +6,9 @@ using TMPro;
 /// </summary>
 public class InteractionUIManager : MonoBehaviour
 {
+    //Attributes
+    [SerializeField] TMP_Text interactionMessage;
+
     //Singleton statement
     public static InteractionUIManager Instance;
     private void Awake()
@@ -15,11 +18,6 @@ public class InteractionUIManager : MonoBehaviour
         else
             Instance = this;
     }
-
-
-
-    //Attributes
-    [SerializeField] TMP_Text interactionMessage;
 
     public void EnableInteractionText(string text)
     {
