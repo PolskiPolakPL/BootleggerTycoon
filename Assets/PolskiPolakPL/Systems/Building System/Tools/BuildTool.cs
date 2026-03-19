@@ -1,25 +1,26 @@
 using UnityEngine;
 
-public class BuildTool : BaseTool
+public class BuildTool : MonoBehaviour
 {
     [SerializeField] StructureSO structureSO;
+    BuildingSystem buildingSystem;
     // Start is called before the first frame update
     void Start()
     {
-        InitializeTool();
+        buildingSystem = BuildingSystem.Instance;
     }
 
     private void Update()
     {
-        if(!BuildSys.HasPreview())
-            BuildSys.CreatePreview(structureSO);
+        if(!buildingSystem.HasPreview())
+            buildingSystem.CreatePreview(structureSO);
         if (Input.GetKeyDown(KeyCode.Mouse0))
             Build();
     }
 
     void Build()
     {
-        if(!BuildSys.PlaceStructure(structureSO))
+        if(!buildingSystem.PlaceStructure(structureSO))
             return;
         InventorySystem.Instance.ClearSelectedSlot();
         Destroy(gameObject);
@@ -27,6 +28,8 @@ public class BuildTool : BaseTool
 
     private void OnDestroy()
     {
-        HandleDestroy();
+        if (buildingSystem.HasPreview())
+            buildingSystem.CancelPlacement();
+        buildingSystem.DisableCurrentStructure();
     }
 }

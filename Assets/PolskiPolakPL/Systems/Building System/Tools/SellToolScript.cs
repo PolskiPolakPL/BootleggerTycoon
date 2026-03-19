@@ -1,29 +1,30 @@
 using UnityEngine;
 
-public class SellToolScript : BaseTool
+public class SellToolScript : MonoBehaviour
 {
+    BuildingSystem buildingSystem;
     // Start is called before the first frame update
-    private void Awake()
+    void Start()
     {
-        InitializeTool();
+        buildingSystem = BuildingSystem.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckStructureRaycast();
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            SellStructure();
+            SellStructure(buildingSystem.SelectedStructure);
     }
 
-    void SellStructure()
+    void SellStructure(StructureScript selectedStructure)
     {
-        if (SelectedStructure)
-            Destroy(SelectedStructure.gameObject);
+        if (selectedStructure)
+            Destroy(selectedStructure.gameObject);
     }
-
     private void OnDestroy()
     {
-        HandleDestroy();
+        if (buildingSystem.HasPreview())
+            buildingSystem.CancelPlacement();
+        buildingSystem.DisableCurrentStructure();
     }
 }

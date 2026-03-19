@@ -6,7 +6,7 @@ public class BuildingSystem : MonoBehaviour
 
     //player camera
     [SerializeField] Transform playerCamT;
-    public float buildingRange = 3;
+    public float buildRange = 3;
     [field:SerializeField] public LayerMask buildOnLayer { get; private set; }
 
     // preview
@@ -14,9 +14,12 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] Material invalidMaterial;
     [SerializeField][Tooltip("Angular speed of preview object when rotated. [deg/s]")] float rotateSpeed = 90;
 
+    public StructureScript SelectedStructure{ get; private set; }
+    StructureScript newStructure;
+
     private GameObject previewGO;
     private Transform previousT;
-    private Ray ray;
+    private Ray buildRay;
     public bool canPlace { get; private set; } = false;
 
     private void Awake()
@@ -31,9 +34,9 @@ public class BuildingSystem : MonoBehaviour
 
     void Update()
     {
+        CheckBuildingRaycast();
         if (!HasPreview())
             return;
-        UpdatePreviewPosition();
 
         if (Input.GetKey(KeyCode.E))
             RotatePreview(rotateSpeed * Time.deltaTime);
@@ -80,22 +83,6 @@ public class BuildingSystem : MonoBehaviour
         return true;
     }
 
-    void UpdatePreviewPosition()
-    {
-        ray = new Ray(playerCamT.position, playerCamT.forward);
-        //Doesn't hit correct layer
-        if (!Physics.Raycast(ray, out RaycastHit hit, buildingRange, buildOnLayer))
-        {
-            DenyPlacement();
-            previewGO.SetActive(false);
-            return;
-        }
-        // else
-        previewGO.transform.position = hit.point;
-        CheckValidPlacement();
-        if (!previewGO.activeInHierarchy)
-            previewGO.SetActive(true);
-    }
 
     void CheckValidPlacement()
     {
@@ -194,5 +181,65 @@ public class BuildingSystem : MonoBehaviour
             }
         }
         return false;
+    }
+
+
+    // EXPERIMANTEAL
+
+    void CheckBuildingRaycast()
+    {
+        buildRay = new Ray(playerCamT.position, playerCamT.forward);
+        if (HasPreview())
+        {
+            UpdatePreviewPosition();
+        }
+        else
+        {
+            HandleStructureSelection();
+        }
+
+    }
+    void UpdatePreviewPosition()
+    {
+        if (!Physics.Raycast(buildRay, out RaycastHit hit, buildRange, buildOnLayer))
+        {
+            DenyPlacement();
+            previewGO.SetActive(false);
+            return;
+        }
+        // else
+        previewGO.transform.position = hit.point;
+        CheckValidPlacement();
+        if (!previewGO.activeInHierarchy)
+            previewGO.SetActive(true);
+    }
+
+    void HandleStructureSelection()
+    {
+        if (!Physics.Raycast(buildRay, out RaycastHit hit, buildRange) || !hit.collider.TryGetComponent<StructureScript>(out newStructure))
+        {
+            DisableCurrentStructure();
+            return;
+        }
+        if (SelectedStructure && SelectedStructure != newStructure)
+            DisableCurrentStructure();
+        if (newStructure.enabled)
+            SetNewCurrentStructure();
+        else
+            DisableCurrentStructure();
+    }
+
+    void SetNewCurrentStructure()
+    {
+        SelectedStructure = newStructure;
+        SelectedStructure.EnableOutline();
+    }
+
+    public void DisableCurrentStructure()
+    {
+        if (!SelectedStructure)
+            return;
+        SelectedStructure.DisableOutline();
+        SelectedStructure = null;
     }
 }

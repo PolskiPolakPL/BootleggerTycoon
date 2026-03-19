@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class MoveToolScript : BaseTool
+public class MoveToolScript : MonoBehaviour
 {
+    BuildingSystem buildingSystem;
     // Start is called before the first frame update
     void Start()
     {
-        InitializeTool();
+        buildingSystem = BuildingSystem.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckStructureRaycast();
         HandleLeftClick();
     }
 
@@ -20,21 +20,23 @@ public class MoveToolScript : BaseTool
         if (!Input.GetKeyDown(KeyCode.Mouse0))
             return;
         // NO PREVIEW - Pick up
-        if (!BuildSys.HasPreview() && SelectedStructure)
+        if (!buildingSystem.HasPreview() && buildingSystem.SelectedStructure)
         {
-            SelectedStructure.PickUp();
+            buildingSystem.SelectedStructure.PickUp();
             return;
         }
         // PREVIEW & CAN PLACE - Place
-        if(BuildSys.HasPreview() && BuildSys.canPlace)
+        if(buildingSystem.HasPreview() && buildingSystem.canPlace)
         {
-            BuildSys.MoveStructure();
+            buildingSystem.MoveStructure();
             return;
         }
     }
 
     private void OnDestroy()
     {
-        HandleDestroy();
+        if (buildingSystem.HasPreview())
+            buildingSystem.CancelPlacement();
+        buildingSystem.DisableCurrentStructure();
     }
 }
