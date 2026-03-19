@@ -36,10 +36,10 @@ public class BuildingSystem : MonoBehaviour
         UpdatePreviewPosition();
 
         if (Input.GetKey(KeyCode.E))
-            RotateStructure(rotateSpeed * Time.deltaTime);
+            RotatePreview(rotateSpeed * Time.deltaTime);
 
         if(Input.GetKey(KeyCode.Q))
-            RotateStructure(-rotateSpeed * Time.deltaTime);
+            RotatePreview(-rotateSpeed * Time.deltaTime);
 
         if (Input.GetMouseButtonDown(1) && previousT)
             CancelPlacement();
@@ -54,7 +54,7 @@ public class BuildingSystem : MonoBehaviour
         previousT.gameObject.SetActive(false);
     }
 
-    void RotateStructure(float angle)
+    void RotatePreview(float angle)
     {
         previewGO.transform.Rotate(new Vector3(0, angle, 0));
     }

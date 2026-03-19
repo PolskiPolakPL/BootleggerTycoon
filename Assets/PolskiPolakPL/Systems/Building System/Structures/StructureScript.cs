@@ -5,6 +5,7 @@ public class StructureScript : MonoBehaviour, IPickable
 {
     public StructureSO StructureSO;
     Outline outline;
+
     void Start()
     {
         outline = GetComponent<Outline>();
@@ -24,11 +25,5 @@ public class StructureScript : MonoBehaviour, IPickable
     public void EnableOutline()
     {
         outline.enabled = true;
-    }
-
-    private void OnDestroy()
-    {
-        if (GameManager.Instance)
-            GameManager.Instance.Player.GainMoney(StructureSO.Cost);
     }
 }
