@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
   m_Name: Conveyor
   m_EditorClassIdentifier: 
+  Name: Conveyor
+  Cost: 20
   StructurePrefab: {fileID: 882337288971869400, guid: 5d9418e0e08aed54396d52327e602672, type: 3}
   PreviewPrefab: {fileID: 9000711928200760782, guid: 7e170046804b94f4492a2b8dc6ebc6c6, type: 3}
-  Cost: 20
-  Name: Conveyor
+  boxPrefab: {fileID: 8281835166623229194, guid: 99786cd59c102d1499397ebb5d5c43f0, type: 3}

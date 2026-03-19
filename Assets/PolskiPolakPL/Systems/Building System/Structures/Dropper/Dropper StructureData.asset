@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
   m_Name: Dropper StructureData
   m_EditorClassIdentifier: 
+  Name: Dropper
+  Cost: 100
   StructurePrefab: {fileID: 5589310840292811551, guid: 9649771a97d2e824ea0c90120524c8e4, type: 3}
   PreviewPrefab: {fileID: 3037105997543911201, guid: f6b6bb41f871c3745ba07eff1d93401f, type: 3}
-  Cost: 100
-  Name: Dropper
+  boxPrefab: {fileID: 8281835166623229194, guid: 502ec1e1e8f9c2145ad1ef9571bd6d19, type: 3}

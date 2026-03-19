@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
-  m_Name: Selling Tool
+  m_Name: Seller
   m_EditorClassIdentifier: 
-  ID: 20
-  DisplayName: Selling Tool
-  WorldPrefab: {fileID: 8989946312265612294, guid: 297b8bb606e73f34d83f50e81f08efea, type: 3}
-  HandPrefab: {fileID: 9029422894423997291, guid: fc647b65a93480240a3f0ce4f5241905, type: 3}
+  ID: 0
+  DisplayName: Seller
+  WorldPrefab: {fileID: 8281835166623229194, guid: 0c1812f4e49587146a8c0b2de0339e76, type: 3}
+  HandPrefab: {fileID: 7185101738303505001, guid: 1c070cca3cc4e084394cd39266592725, type: 3}
   UVRect:
     serializedVersion: 2
-    x: 0
-    y: 0.2
+    x: 0.3
+    y: 0.1
     width: 0.1
     height: 0.1
-  isThrowable: 0
+  isThrowable: 1

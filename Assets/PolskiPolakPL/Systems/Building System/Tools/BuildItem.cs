@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuildTool : MonoBehaviour
+public class BuildItem : MonoBehaviour
 {
     [SerializeField] StructureSO structureSO;
     BuildingSystem buildingSystem;
@@ -12,10 +12,27 @@ public class BuildTool : MonoBehaviour
 
     private void Update()
     {
-        if(!buildingSystem.HasPreview())
-            buildingSystem.CreatePreview(structureSO);
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            Build();
+            HandleLeftCick();
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            HandleRightClick();
+    }
+    void HandleLeftCick()
+    {
+        if (!buildingSystem.HasPreview())
+        {
+            buildingSystem.CreatePreview(structureSO);
+            return;
+        }
+        Build();
+    }
+
+    void HandleRightClick()
+    {
+        if (buildingSystem.HasPreview())
+            buildingSystem.CancelPlacement();
     }
 
     void Build()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SellToolScript : MonoBehaviour
+public class BoxTool : MonoBehaviour
 {
     BuildingSystem buildingSystem;
     // Start is called before the first frame update
@@ -13,13 +13,16 @@ public class SellToolScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            SellStructure(buildingSystem.SelectedStructure);
+            StoreStructure(buildingSystem.SelectedStructure);
     }
 
-    void SellStructure(StructureScript selectedStructure)
+    void StoreStructure(StructureScript selectedStructure)
     {
-        if (selectedStructure)
-            Destroy(selectedStructure.gameObject);
+        if (!selectedStructure)
+            return;
+        Transform selectedT = selectedStructure.transform;
+        Instantiate(selectedStructure.StructureSO.boxPrefab, selectedT.position + Vector3.up, selectedT.rotation);
+        Destroy(selectedStructure.gameObject);
     }
     private void OnDestroy()
     {

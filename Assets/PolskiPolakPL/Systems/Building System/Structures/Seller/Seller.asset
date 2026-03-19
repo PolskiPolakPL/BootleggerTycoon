@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331b3b7be160ed54689a2f5da207b7f0, type: 3}
   m_Name: Seller
   m_EditorClassIdentifier: 
+  Name: Seller
+  Cost: 60
   StructurePrefab: {fileID: 8446951979300456100, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
   PreviewPrefab: {fileID: 2922183776359071499, guid: 6f2aced4df5bc814daa87057985a862d, type: 3}
-  Cost: 60
-  Name: Seller
+  boxPrefab: {fileID: 8281835166623229194, guid: 0c1812f4e49587146a8c0b2de0339e76, type: 3}
