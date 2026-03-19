@@ -91,21 +91,15 @@ public class BuildingSystem : MonoBehaviour
             return;
         }
         // else
-        CheckValidPlacement();
         previewGO.transform.position = hit.point;
+        CheckValidPlacement();
         if (!previewGO.activeInHierarchy)
             previewGO.SetActive(true);
     }
 
     void CheckValidPlacement()
     {
-        PrewiewScript previewScr;
-        if(!previewGO.TryGetComponent<PrewiewScript>(out previewScr))
-        {
-            Debug.LogWarning("Preview has no PreviewScript!");
-            return;
-        }
-        if (previewScr.IsValid())
+        if (IsPlaceSpotValid())
             AllowPlacement();
         else
             DenyPlacement();
@@ -166,5 +160,39 @@ public class BuildingSystem : MonoBehaviour
     public bool HasPreview()
     {
         return previewGO;
+    }
+
+    bool IsPlaceSpotValid()
+    {
+        return !IsPreviewColliding();
+    }
+
+    // ChatGPT's Method (probably needs fixing/optimizing)
+    bool IsPreviewColliding()
+    {
+        Collider[] ownColliders = previewGO.GetComponentsInChildren<Collider>();
+        foreach (var own in ownColliders)
+        {
+            Collider[] hits = Physics.OverlapBox(
+                own.bounds.center,
+                own.bounds.extents,
+                own.transform.rotation,
+                ~BuildingSystem.Instance.buildOnLayer
+            );
+
+            foreach (var hit in hits)
+            {
+                if (!hit.GetComponent<StructureScript>())
+                    continue;
+                if (Physics.ComputePenetration(
+                    own, own.transform.position, own.transform.rotation,
+                    hit, hit.transform.position, hit.transform.rotation,
+                    out Vector3 direction, out float distance))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
