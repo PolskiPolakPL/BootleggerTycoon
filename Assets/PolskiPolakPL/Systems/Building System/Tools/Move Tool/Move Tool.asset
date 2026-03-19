@@ -16,4 +16,10 @@ MonoBehaviour:
   DisplayName: Moving Tool
   WorldPrefab: {fileID: 0}
   HandPrefab: {fileID: 3826616073077357950, guid: ccb260117da95904aa26c20f90578128, type: 3}
+  UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0.1
+    width: 0.1
+    height: 0.1
   isThrowable: 0

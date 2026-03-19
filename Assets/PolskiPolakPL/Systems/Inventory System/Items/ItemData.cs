@@ -7,5 +7,6 @@ public class ItemData : ScriptableObject
     public string DisplayName;
     public GameObject WorldPrefab;
     public GameObject HandPrefab;
+    public Rect UVRect = new Rect(0,0,0.1f,0.1f);
     public bool isThrowable;
 }

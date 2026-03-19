@@ -21,7 +21,7 @@ public class ItemSlot : MonoBehaviour
     {
         if (HasItem())
         {
-            itemRawImage.uvRect = InventorySystem.Instance.GetUVRectFromItemArray(heldItem);
+            itemRawImage.uvRect = heldItem.UVRect;
             itemRawImage.enabled = true;
         }
         else

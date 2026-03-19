@@ -166,23 +166,4 @@ public class InventorySystem : MonoBehaviour
         GameObject droppedItemGo = Instantiate(itemData.WorldPrefab, playerHand.position, playerHand.rotation);
         droppedItemGo.GetComponent<Rigidbody>().AddForce(playerHand.forward * throwingForce, ForceMode.Impulse);
     }
-
-    public Rect GetUVRectFromItemArray(ItemData item)
-    {
-        Vector2 arrayPosition = IdToArrayPosition(item);
-        float step = 1/(float)itemsPNGArraySize;
-        float x = step * arrayPosition.x;
-        float y = step * arrayPosition.y;
-        Debug.Log($"X: {x} \t Y: {y}");
-        return new Rect(x, y, step, step);
-    }
-
-    Vector2 IdToArrayPosition(ItemData item)
-    {
-        Vector2 arrayPosition;
-        arrayPosition.x = (float)item.ID%itemsPNGArraySize;
-        arrayPosition.y = Mathf.Floor((float)item.ID/ itemsPNGArraySize);
-        return arrayPosition;
-    }
-
 }
