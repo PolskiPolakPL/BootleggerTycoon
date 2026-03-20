@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
-  m_Name: Selling Tool
+  m_Name: Boxing Tool
   m_EditorClassIdentifier: 
   ID: 20
-  DisplayName: BoxTool
+  DisplayName: Box Tool
   WorldPrefab: {fileID: 8989946312265612294, guid: 297b8bb606e73f34d83f50e81f08efea, type: 3}
   HandPrefab: {fileID: 9029422894423997291, guid: fc647b65a93480240a3f0ce4f5241905, type: 3}
   UVRect:

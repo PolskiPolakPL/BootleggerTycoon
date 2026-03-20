@@ -7,5 +7,5 @@ public class StructureSO : ScriptableObject
     public float Cost;
     public GameObject StructurePrefab;
     public GameObject PreviewPrefab;
-    public GameObject boxPrefab;
+    public ItemData itemData;
 }

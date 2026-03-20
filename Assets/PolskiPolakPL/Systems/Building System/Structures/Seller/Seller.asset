@@ -16,4 +16,4 @@ MonoBehaviour:
   Cost: 60
   StructurePrefab: {fileID: 8446951979300456100, guid: 18ec754186aee3d428f3c60296d7787a, type: 3}
   PreviewPrefab: {fileID: 2922183776359071499, guid: 6f2aced4df5bc814daa87057985a862d, type: 3}
-  boxPrefab: {fileID: 8281835166623229194, guid: 0c1812f4e49587146a8c0b2de0339e76, type: 3}
+  itemData: {fileID: 11400000, guid: 43747a226d520ef46825e0ac3728afbf, type: 2}
