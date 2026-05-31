@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
+  m_Name: Green Cube Data
+  m_EditorClassIdentifier: 
+  ID: green_cube
+  DisplayName: Green Cube
+  Description: A green cube. "Green like a grass" - gross. I don't touch those.
+  WorldPrefab: {fileID: 5612997135575571203, guid: 156e3f709e2b45047b34464e040610b6, type: 3}
+  HandPrefab: {fileID: 4445975317762913257, guid: d02f2fda27326a94392b13149b5c5b87, type: 3}
+  ImageTexture: {fileID: 2800000, guid: cd61b1d1c4e969041acb0ebd44198afa, type: 3}
+  UVRect:
+    serializedVersion: 2
+    x: 0.1
+    y: 0
+    width: 0.1
+    height: 0.1
+  StackSize: 1
+  Durability: 0

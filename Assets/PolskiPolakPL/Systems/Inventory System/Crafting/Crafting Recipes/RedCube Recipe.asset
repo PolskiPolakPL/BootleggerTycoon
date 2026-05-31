@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f28e1c4619ba0045a845e5b0f1d0106, type: 3}
+  m_Name: RedCube Recipe
+  m_EditorClassIdentifier: 
+  ingredients:
+  - item: {fileID: 11400000, guid: 87fc265a52136d742b472f7fcf69f83e, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 54cf57437ed859242a93303a47809479, type: 2}
+    amount: 1
+  result: {fileID: 11400000, guid: 7b941082e5c267b4c9a0958085e11afa, type: 2}
+  resultAmount: 2
