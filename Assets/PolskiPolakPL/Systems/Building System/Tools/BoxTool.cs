@@ -23,7 +23,7 @@ public class BoxTool : MonoBehaviour
             return;
         Transform selectedT = selectedStructure.transform;
         GameObject boxGO = Instantiate(boxPrefab, selectedT.position + Vector3.up, selectedT.rotation);
-        boxGO.GetComponent<ItemScript>().itemData = selectedStructure.StructureSO.itemData;
+        //boxGO.GetComponent<ItemScript>().itemData = selectedStructure.StructureSO.itemData;
         Destroy(selectedStructure.gameObject);
     }
     private void OnDestroy()

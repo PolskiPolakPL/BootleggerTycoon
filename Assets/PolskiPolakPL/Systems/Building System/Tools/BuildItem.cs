@@ -39,8 +39,7 @@ public class BuildItem : MonoBehaviour
     {
         if(!buildingSystem.PlaceStructure(structureSO))
             return;
-        InventorySystem.Instance.ClearSelectedSlot();
-        Destroy(gameObject);
+        //InventorySystem.Instance.ClearSelectedSlot();
     }
 
     private void OnDestroy()

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class RTBaker : MonoBehaviour
@@ -14,6 +15,7 @@ public class RTBaker : MonoBehaviour
         string exportPath = $"{Application.dataPath}/PolskiPolakPL/Utilities/RT Baker/RT_Export.png";
         byte[] bytes = bakeTexture.EncodeToPNG();
         System.IO.File.WriteAllBytes(exportPath, bytes);
+        AssetDatabase.Refresh();
         Debug.Log("BAKE FINISHED!");
     }
 }

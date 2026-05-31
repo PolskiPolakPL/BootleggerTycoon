@@ -18,7 +18,8 @@ public class Dropper : MonoBehaviour
 
     void DropItem()
     {
-        Instantiate(itemGO,spawnerT.position, Quaternion.identity);
+        if(itemGO)
+            Instantiate(itemGO,spawnerT.position, Quaternion.identity);
     }
 
     private void Update()
