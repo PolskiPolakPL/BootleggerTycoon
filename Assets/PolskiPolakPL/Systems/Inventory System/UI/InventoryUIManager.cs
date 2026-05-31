@@ -44,7 +44,7 @@ public class InventoryUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && playerInventoryPanel)
         {
             ToggleInventoryPanel(!playerInventoryPanel.activeInHierarchy);
         }
