@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2875479022854285757}
   - component: {fileID: 5553603816578659024}
   - component: {fileID: 3428906494198035652}
-  - component: {fileID: 5589081523790395736}
   - component: {fileID: 2183930713327264880}
+  - component: {fileID: -5437224603954852406}
   m_Layer: 0
   m_Name: (World) Blue Cube
   m_TagString: Interactable
@@ -166,20 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: Pick Up
---- !u!114 &5589081523790395736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5612997135575571203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36418677e6e52e940a7f59837fec1139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 87fc265a52136d742b472f7fcf69f83e, type: 2}
-  amount: 1
 --- !u!54 &2183930713327264880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -207,3 +193,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &-5437224603954852406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612997135575571203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf02a44cc3a8db648b301d36cb76d544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 87fc265a52136d742b472f7fcf69f83e, type: 2}
+  amount: 1
