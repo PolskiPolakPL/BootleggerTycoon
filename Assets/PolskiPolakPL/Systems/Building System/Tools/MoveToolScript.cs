@@ -13,6 +13,7 @@ public class MoveToolScript : MonoBehaviour
     void Update()
     {
         HandleLeftClick();
+        HandleRightClick();
     }
 
     void HandleLeftClick()
@@ -31,6 +32,13 @@ public class MoveToolScript : MonoBehaviour
             buildingSystem.MoveStructure();
             return;
         }
+    }
+    void HandleRightClick()
+    {
+        if(!Input.GetKeyDown(KeyCode.Mouse1))
+            return;
+        if (buildingSystem.HasPreview())
+            buildingSystem.CancelPlacement();
     }
 
     private void OnDestroy()

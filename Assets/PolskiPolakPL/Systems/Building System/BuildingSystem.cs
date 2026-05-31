@@ -7,20 +7,20 @@ public class BuildingSystem : MonoBehaviour
     //player camera
     [SerializeField] Transform playerCamT;
     public float buildRange = 3;
+    private Ray buildRay;
     [field:SerializeField] public LayerMask buildOnLayer { get; private set; }
 
     // preview
     [SerializeField] Material validMaterial;
     [SerializeField] Material invalidMaterial;
     [SerializeField][Tooltip("Angular speed of preview object when rotated. [deg/s]")] float rotateSpeed = 90;
+    private GameObject previewGO;
+    public bool canPlace { get; private set; } = false;
 
+    //structure
     public StructureScript SelectedStructure{ get; private set; }
     StructureScript newStructure;
-
-    private GameObject previewGO;
     private Transform previousT;
-    private Ray buildRay;
-    public bool canPlace { get; private set; } = false;
 
     private void Awake()
     {
@@ -43,11 +43,8 @@ public class BuildingSystem : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Q))
             RotatePreview(-rotateSpeed * Time.deltaTime);
-
-        if (Input.GetMouseButtonDown(1) && previousT)
-            CancelPlacement();
     }
-
+    #region structuremethods
     public void PickUpStructure(StructureScript structureScr)
     {
         previousT = structureScr.transform;
@@ -56,12 +53,6 @@ public class BuildingSystem : MonoBehaviour
         // Temporarily hides prevoius object
         previousT.gameObject.SetActive(false);
     }
-
-    void RotatePreview(float angle)
-    {
-        previewGO.transform.Rotate(new Vector3(0, angle, 0));
-    }
-
     public void MoveStructure()
     {
         // Places new object and removes preview
@@ -72,7 +63,6 @@ public class BuildingSystem : MonoBehaviour
         previousT = null;
         DestroyPreview();
     }
-
     public bool PlaceStructure(StructureSO structureData)
     {
         if (!previewGO || !canPlace)
@@ -82,37 +72,31 @@ public class BuildingSystem : MonoBehaviour
         DestroyPreview();
         return true;
     }
-
-
-    void CheckValidPlacement()
+    public void CancelPlacement()
     {
-        if (IsPlaceSpotValid())
-            AllowPlacement();
-        else
-            DenyPlacement();
+        if (previousT)
+        {
+            previousT.gameObject.SetActive(true);
+            previousT = null;
+        }
+        DestroyPreview();
     }
+    #endregion
 
-    void DenyPlacement()
-    {
-        if (!canPlace)
-            return;
-        canPlace = false;
-        SetPreviewMaterial(false);
-    }
-    void AllowPlacement()
-    {
-        if (canPlace)
-            return;
-        canPlace = true;
-        SetPreviewMaterial(true);
-    }
-
+    #region preview methods
     public void CreatePreview(StructureSO structureData)
     {
         previewGO = Instantiate(structureData.PreviewPrefab, transform);
         SetPreviewMaterial(canPlace);
     }
-
+    public bool HasPreview()
+    {
+        return previewGO;
+    }
+    void RotatePreview(float angle)
+    {
+        previewGO.transform.Rotate(new Vector3(0, angle, 0));
+    }
     void SetPreviewMaterial(bool isValid)
     {
         Material material;
@@ -126,34 +110,29 @@ public class BuildingSystem : MonoBehaviour
             renderer.material = material;
         }
     }
-
-    public void CancelPlacement()
+    void UpdatePreviewPosition()
     {
-        if (previousT)
+        if (!Physics.Raycast(buildRay, out RaycastHit hit, buildRange, buildOnLayer))
         {
-            previousT.gameObject.SetActive(true);
-            previousT = null;
+            DenyPlacement();
+            previewGO.SetActive(false);
+            return;
         }
-        DestroyPreview();
+        // else
+        previewGO.transform.position = hit.point;
+        CheckValidPlacement();
+        if (!previewGO.activeInHierarchy)
+            previewGO.SetActive(true);
     }
-
     void DestroyPreview()
     {
         if (previewGO)
             Destroy(previewGO);
         previewGO = null;
     }
+    #endregion
 
-    public bool HasPreview()
-    {
-        return previewGO;
-    }
-
-    bool IsPlaceSpotValid()
-    {
-        return !IsPreviewColliding();
-    }
-
+    #region placement validation
     // ChatGPT's Method (probably needs fixing/optimizing)
     bool IsPreviewColliding()
     {
@@ -164,7 +143,7 @@ public class BuildingSystem : MonoBehaviour
                 own.bounds.center,
                 own.bounds.extents,
                 own.transform.rotation,
-                ~BuildingSystem.Instance.buildOnLayer
+                ~buildOnLayer
             );
 
             foreach (var hit in hits)
@@ -183,9 +162,34 @@ public class BuildingSystem : MonoBehaviour
         return false;
     }
 
+    bool IsPlaceSpotValid()
+    {
+        return !IsPreviewColliding();
+    }
+    void CheckValidPlacement()
+    {
+        if (IsPlaceSpotValid())
+            AllowPlacement();
+        else
+            DenyPlacement();
+    }
+    void DenyPlacement()
+    {
+        if (!canPlace)
+            return;
+        canPlace = false;
+        SetPreviewMaterial(false);
+    }
+    void AllowPlacement()
+    {
+        if (canPlace)
+            return;
+        canPlace = true;
+        SetPreviewMaterial(true);
+    }
+    #endregion
 
-    // EXPERIMANTEAL
-
+    #region Build Raycast
     void CheckBuildingRaycast()
     {
         buildRay = new Ray(playerCamT.position, playerCamT.forward);
@@ -199,21 +203,6 @@ public class BuildingSystem : MonoBehaviour
         }
 
     }
-    void UpdatePreviewPosition()
-    {
-        if (!Physics.Raycast(buildRay, out RaycastHit hit, buildRange, buildOnLayer))
-        {
-            DenyPlacement();
-            previewGO.SetActive(false);
-            return;
-        }
-        // else
-        previewGO.transform.position = hit.point;
-        CheckValidPlacement();
-        if (!previewGO.activeInHierarchy)
-            previewGO.SetActive(true);
-    }
-
     void HandleStructureSelection()
     {
         if (!Physics.Raycast(buildRay, out RaycastHit hit, buildRange) || !hit.collider.TryGetComponent<StructureScript>(out newStructure))
@@ -228,13 +217,11 @@ public class BuildingSystem : MonoBehaviour
         else
             DisableCurrentStructure();
     }
-
     void SetNewCurrentStructure()
     {
         SelectedStructure = newStructure;
         SelectedStructure.EnableOutline();
     }
-
     public void DisableCurrentStructure()
     {
         if (!SelectedStructure)
@@ -242,4 +229,5 @@ public class BuildingSystem : MonoBehaviour
         SelectedStructure.DisableOutline();
         SelectedStructure = null;
     }
+    #endregion
 }
