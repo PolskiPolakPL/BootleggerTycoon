@@ -518,6 +518,7 @@ MonoBehaviour:
   throwingForce: 5
   selectedColor: {r: 0, g: 0, b: 0, a: 0.8}
   IsHotbarActive: 1
+  selectedSlot: {fileID: 0}
   inventoryUI: {fileID: 0}
 --- !u!114 &514003664
 MonoBehaviour:
@@ -5458,7 +5459,11 @@ PrefabInstance:
       value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3846010097323671403, guid: 0ffb7947607e06a419e6f1b6b068b051, type: 3}
+    - {fileID: 1502913487318753869, guid: 0ffb7947607e06a419e6f1b6b068b051, type: 3}
+    - {fileID: 2492967102640612085, guid: 0ffb7947607e06a419e6f1b6b068b051, type: 3}
+    - {fileID: 6838374002885830174, guid: 0ffb7947607e06a419e6f1b6b068b051, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ffb7947607e06a419e6f1b6b068b051, type: 3}
