@@ -28,7 +28,7 @@ public class InventorySystem : MonoBehaviour
 
     public bool IsHotbarActive = true;
     int selectedIndex = 0;
-    public ItemSlot selectedSlot {  get; private set; }
+    public ItemSlot selectedSlot;
     [SerializeField] InventoryUIManager inventoryUI;
 
     // Singleton Instance
@@ -77,7 +77,8 @@ public class InventorySystem : MonoBehaviour
     public bool AddItem(ItemData item, int amount = 1)
     {
         //Try putting item in selected slot
-        if(TryAddToSelectedSlot(item, amount, out int remainingAmount))
+        int remainingAmount = amount;
+        if (IsHotbarActive && TryAddToSelectedSlot(item, amount, out remainingAmount))
         {
             OnItemAdded?.Invoke(item, amount - remainingAmount);
             return true;
@@ -232,6 +233,11 @@ public class InventorySystem : MonoBehaviour
         }
         UpdateSlotBG();
     }
+
+    public ItemSlot GetHotbarSelectedSlot()
+    {
+        return hotbarSlots[selectedIndex];
+    }
     public void UpdateSlotBG()
     {
         Image bgImage;
@@ -246,8 +252,8 @@ public class InventorySystem : MonoBehaviour
     {
         foreach (Transform child in playerHand)
             Destroy(child.gameObject);
-        if (selectedSlot.HasItem())
-            Instantiate(selectedSlot.GetItem().HandPrefab, playerHand);
+        if (GetHotbarSelectedSlot().HasItem())
+            Instantiate(GetHotbarSelectedSlot().GetItem().HandPrefab, playerHand);
     }
 
     void HandleItemDropping()
@@ -257,7 +263,7 @@ public class InventorySystem : MonoBehaviour
             return;
 
         // Slot has NOT item
-        if (!selectedSlot.HasItem())
+        if (!selectedSlot || !selectedSlot.HasItem())
             return;
 
         bool isMoveItemScrActive = inventoryUI && inventoryUI.moveItemScr;

@@ -17,7 +17,7 @@ public class InventoryUIManager : MonoBehaviour
     public UnityEvent OnHideInventoryPanel;
 
     InventorySystem inventory;
-
+    bool isToggled;
 
     public static InventoryUIManager Instance { get; private set; }
     private void Awake()
@@ -26,6 +26,8 @@ public class InventoryUIManager : MonoBehaviour
             Destroy(gameObject);
         else
             Instance = this;
+
+        isToggled = playerInventoryPanel.activeInHierarchy;
 
         OnShowInventoryPanel.AddListener(clearSlotsBgColors);
     }
@@ -43,7 +45,12 @@ public class InventoryUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab) && playerInventoryPanel)
         {
-            ToggleInventoryPanel(!playerInventoryPanel.activeInHierarchy);
+            ToggleInventoryPanel(!isToggled);
+        }
+
+        if (isToggled)
+        {
+            inventory.selectedSlot = GetHoveredSlot();
         }
 
         if (moveItemScr)
@@ -62,6 +69,7 @@ public class InventoryUIManager : MonoBehaviour
         // Handle Cursor
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = toggle;
+        isToggled = toggle;
 
         if (toggle)
         {
