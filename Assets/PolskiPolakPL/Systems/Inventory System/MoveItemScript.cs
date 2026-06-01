@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +7,13 @@ public class MoveItemScript : MonoBehaviour
     public ItemSlot draggedSlot {  get; private set; }
 
     InventorySystem inventorySys;
+    InventoryUIManager inventoryUI;
 
     private void Start()
     {
         inventorySys = InventorySystem.Instance;
-        InventoryUIManager.Instance.OnHideInventoryPanel.AddListener(Abort);
+        inventoryUI = InventoryUIManager.Instance;
+        inventoryUI.OnHideInventoryPanel.AddListener(Abort);
     }
 
     public void HandleItemDrag()
@@ -34,7 +35,7 @@ public class MoveItemScript : MonoBehaviour
 
     void StartDrag()
     {
-        ItemSlot hoveredSlot = GetHoveredSlot();
+        ItemSlot hoveredSlot = inventoryUI.GetHoveredSlot();
 
         if (!hoveredSlot || !hoveredSlot.HasItem())
             return;
@@ -55,7 +56,7 @@ public class MoveItemScript : MonoBehaviour
 
     void EndDrag()
     {
-        ItemSlot hovered = GetHoveredSlot();
+        ItemSlot hovered = inventoryUI.GetHoveredSlot();
         HandleDrop(draggedSlot, hovered);
         dragIcon.enabled = false;
         draggedSlot = null;
@@ -70,23 +71,6 @@ public class MoveItemScript : MonoBehaviour
     bool IsDragging()
     {
         return draggedSlot;
-    }
-
-    public ItemSlot GetHoveredSlot()
-    {
-        List<ItemSlot> allSlots = new List<ItemSlot>();
-
-        allSlots.AddRange(inventorySys.playerInventorySlots);
-        allSlots.AddRange(ItemStorageScript.ChestUISlots);
-
-
-        foreach (ItemSlot slot in allSlots)
-        {
-            if (slot.hovering)
-                return slot;
-        }
-
-        return null;
     }
 
     void HandleDrop(ItemSlot originSlot, ItemSlot targetSlot)

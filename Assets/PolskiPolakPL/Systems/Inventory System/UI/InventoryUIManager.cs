@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,7 +18,6 @@ public class InventoryUIManager : MonoBehaviour
 
 
     InventorySystem inventory;
-    bool canMoveItems;
 
 
     public static InventoryUIManager Instance { get; private set; }
@@ -36,7 +36,6 @@ public class InventoryUIManager : MonoBehaviour
         {
             ChestUIPanel.SetActive(false);
         }
-        canMoveItems = moveItemScr != null;
     }
 
     private void Update()
@@ -46,12 +45,10 @@ public class InventoryUIManager : MonoBehaviour
             ToggleInventoryPanel(!playerInventoryPanel.activeInHierarchy);
         }
 
-        if (canMoveItems)
-        {
+        if (moveItemScr)
             moveItemScr.HandleItemDrag();
-            if (descrPanelScr)
-                descrPanelScr.HandleDescriptionPanel(moveItemScr.GetHoveredSlot());
-        }
+        if (descrPanelScr)
+            descrPanelScr.HandleDescriptionPanel(GetHoveredSlot());
     }
 
     public void ToggleInventoryPanel(bool toggle)
@@ -70,5 +67,23 @@ public class InventoryUIManager : MonoBehaviour
             return;
         }
         OnHideInventoryPanel?.Invoke();
+    }
+
+    public ItemSlot GetHoveredSlot()
+    {
+        List<ItemSlot> allSlots = new List<ItemSlot>();
+
+        allSlots.AddRange(inventory.playerInventorySlots);
+        if(ItemStorageScript.ChestUISlots != null)
+            allSlots.AddRange(ItemStorageScript.ChestUISlots);
+
+
+        foreach (ItemSlot slot in allSlots)
+        {
+            if (slot.hovering)
+                return slot;
+        }
+
+        return null;
     }
 }
