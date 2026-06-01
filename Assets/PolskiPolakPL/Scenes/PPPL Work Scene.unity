@@ -514,10 +514,9 @@ MonoBehaviour:
   hotbarSlotsParent: {fileID: 857942679}
   backpackSlotsParent: {fileID: 0}
   playerHand: {fileID: 868886253}
-  dropKey: 103
+  dropKey: 113
   throwingForce: 5
-  normalOpacity: 0.6
-  selectedOpacity: 0.8
+  selectedColor: {r: 0, g: 0, b: 0, a: 0.8}
   IsHotbarActive: 1
   inventoryUI: {fileID: 0}
 --- !u!114 &514003664

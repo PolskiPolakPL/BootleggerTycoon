@@ -20,8 +20,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     #region Debugging
 
-    Color bgColor;
-    [SerializeField] Color hoveringColor;
+    public Color bgColor {  get; private set; }
     private void Awake()
     {
         bgColor = bgImage.color;
@@ -98,7 +97,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         hovering = true;
-        bgImage.color = hoveringColor;
+        bgImage.color = InventorySystem.Instance.selectedColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -16,7 +16,6 @@ public class InventoryUIManager : MonoBehaviour
     public UnityEvent OnShowInventoryPanel;
     public UnityEvent OnHideInventoryPanel;
 
-
     InventorySystem inventory;
 
 
@@ -27,6 +26,8 @@ public class InventoryUIManager : MonoBehaviour
             Destroy(gameObject);
         else
             Instance = this;
+
+        OnShowInventoryPanel.AddListener(clearSlotsBgColors);
     }
 
     private void Start()
@@ -47,6 +48,7 @@ public class InventoryUIManager : MonoBehaviour
 
         if (moveItemScr)
             moveItemScr.HandleItemDrag();
+
         if (descrPanelScr)
             descrPanelScr.HandleDescriptionPanel(GetHoveredSlot());
     }
@@ -69,6 +71,14 @@ public class InventoryUIManager : MonoBehaviour
         OnHideInventoryPanel?.Invoke();
     }
 
+    void clearSlotsBgColors()
+    {
+        foreach(ItemSlot slot in inventory.playerInventorySlots)
+        {
+            slot.bgImage.color = slot.bgColor;
+        }
+    }
+
     public ItemSlot GetHoveredSlot()
     {
         List<ItemSlot> allSlots = new List<ItemSlot>();
@@ -85,5 +95,11 @@ public class InventoryUIManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void OnDestroy()
+    {
+        OnShowInventoryPanel.RemoveAllListeners();
+        OnHideInventoryPanel.RemoveAllListeners();
     }
 }

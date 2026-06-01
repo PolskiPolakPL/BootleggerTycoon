@@ -19,9 +19,8 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] KeyCode dropKey = KeyCode.G;
     [SerializeField] float throwingForce = 5;
 
-    [field: Header("Selected Slot BG")]
-    [Range(0, 1)] public float normalOpacity = .6f;
-    [Range(0, 1)] public float selectedOpacity = .8f;
+    [field: Header("Selected Slot Color")]
+    public Color selectedColor = new Color(0, 0, 0, .8f);
 
     //events
     public event Action<ItemData, int> OnItemAdded;
@@ -239,7 +238,7 @@ public class InventorySystem : MonoBehaviour
         foreach (ItemSlot slot in hotbarSlots)
         {
             bgImage = slot.bgImage;
-            bgImage.color = (slot == selectedSlot) ? new Color(0, 0, 0, selectedOpacity) : new Color(0, 0, 0, normalOpacity);
+            bgImage.color = (slot == selectedSlot) ? selectedColor : slot.bgColor;
         }
     }
 
