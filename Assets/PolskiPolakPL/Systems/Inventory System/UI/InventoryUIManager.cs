@@ -1,13 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 
 public class InventoryUIManager : MonoBehaviour
 {
-    [field: Header("Selected Slot BG")]
-    [Range(0, 1)] public float normalOpacity = .6f;
-    [Range(0, 1)] public float selectedOpacity = .8f;
+    [field: SerializeField] public MoveItemScript moveItemScr { get; private set; }
 
     [Header("Inventory UI Panels")]
     [SerializeField] GameObject playerInventoryPanel;
@@ -39,7 +36,7 @@ public class InventoryUIManager : MonoBehaviour
         {
             ChestUIPanel.SetActive(false);
         }
-        canMoveItems = inventory.moveItemScr != null;
+        canMoveItems = moveItemScr != null;
     }
 
     private void Update()
@@ -51,21 +48,9 @@ public class InventoryUIManager : MonoBehaviour
 
         if (canMoveItems)
         {
-            inventory.moveItemScr.HandleItemDrag();
+            moveItemScr.HandleItemDrag();
             if (descrPanelScr)
-                descrPanelScr.HandleDescriptionPanel(inventory.moveItemScr.GetHoveredSlot());
-        }
-
-        UpdateSlotBG(inventory.selectedSlot);
-    }
-
-    public void UpdateSlotBG(ItemSlot selectedSlot)
-    {
-        Image bgImage;
-        foreach (ItemSlot slot in inventory.hotbarSlots)
-        {
-            bgImage = slot.bgImage;
-            bgImage.color = (slot == selectedSlot) ? new Color(0, 0, 0, selectedOpacity) : new Color(0, 0, 0, normalOpacity);
+                descrPanelScr.HandleDescriptionPanel(moveItemScr.GetHoveredSlot());
         }
     }
 

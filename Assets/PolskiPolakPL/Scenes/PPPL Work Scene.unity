@@ -476,7 +476,6 @@ GameObject:
   m_Component:
   - component: {fileID: 514003661}
   - component: {fileID: 514003663}
-  - component: {fileID: 514003662}
   m_Layer: 0
   m_Name: Inventory System
   m_TagString: Untagged
@@ -499,30 +498,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1177427603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &514003662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514003660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186c192cbb3e4fd4db4b345c3b7d1de7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalOpacity: 0.6
-  selectedOpacity: 0.8
-  playerInventoryPanel: {fileID: 0}
-  descrPanelScr: {fileID: 0}
-  <ChestUIPanel>k__BackingField: {fileID: 0}
-  <CraftingUIPanel>k__BackingField: {fileID: 0}
-  OnShowInventoryPanel:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideInventoryPanel:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &514003663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,8 +515,10 @@ MonoBehaviour:
   playerHand: {fileID: 868886253}
   dropKey: 103
   throwingForce: 5
+  normalOpacity: 0.6
+  selectedOpacity: 0.8
   IsHotbarActive: 1
-  <moveItemScr>k__BackingField: {fileID: 0}
+  inventoryUI: {fileID: 0}
 --- !u!224 &536696172 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6021134848996021, guid: ea0dceff44756134d8bd1a704e306c48, type: 3}

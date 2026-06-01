@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] KeyCode dropKey = KeyCode.G;
     [SerializeField] float throwingForce = 5;
 
+    [field: Header("Selected Slot BG")]
+    [Range(0, 1)] public float normalOpacity = .6f;
+    [Range(0, 1)] public float selectedOpacity = .8f;
+
     //events
     public event Action<ItemData, int> OnItemAdded;
     public event Action<ItemData, int> OnItemRemoved;
@@ -25,7 +30,7 @@ public class InventorySystem : MonoBehaviour
     public bool IsHotbarActive = true;
     int selectedIndex = 0;
     public ItemSlot selectedSlot {  get; private set; }
-    [field: SerializeField] public MoveItemScript moveItemScr { get; private set; }
+    [SerializeField] InventoryUIManager inventoryUI;
 
     // Singleton Instance
     public static InventorySystem Instance {  get; private set; }
@@ -38,6 +43,11 @@ public class InventorySystem : MonoBehaviour
 
         InitializeLists();
 
+    }
+
+    private void Start()
+    {
+        inventoryUI = InventoryUIManager.Instance;
     }
 
     void InitializeLists()
@@ -221,6 +231,16 @@ public class InventorySystem : MonoBehaviour
             selectedSlot = hotbarSlots[selectedIndex];
             EquipHandItem();
         }
+        UpdateSlotBG();
+    }
+    public void UpdateSlotBG()
+    {
+        Image bgImage;
+        foreach (ItemSlot slot in hotbarSlots)
+        {
+            bgImage = slot.bgImage;
+            bgImage.color = (slot == selectedSlot) ? new Color(0, 0, 0, selectedOpacity) : new Color(0, 0, 0, normalOpacity);
+        }
     }
 
     void EquipHandItem()
@@ -241,8 +261,9 @@ public class InventorySystem : MonoBehaviour
         if (!selectedSlot.HasItem())
             return;
 
+        bool isMoveItemScrActive = inventoryUI && inventoryUI.moveItemScr;
         // Slot is busy being dragged
-        if (moveItemScr && selectedSlot == moveItemScr.draggedSlot)
+        if (isMoveItemScrActive && selectedSlot == inventoryUI.moveItemScr.draggedSlot)
             return;
 
         ItemData selectedItem = selectedSlot.GetItem();
