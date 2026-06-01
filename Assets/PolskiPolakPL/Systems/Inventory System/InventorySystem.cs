@@ -310,5 +310,6 @@ public class InventorySystem : MonoBehaviour
         if(!selectedSlot.HasItem())
             return;
         selectedSlot.RemoveAmount(amount);
+        EquipHandItem();
     }
 }

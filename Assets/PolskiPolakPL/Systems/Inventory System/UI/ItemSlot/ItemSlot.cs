@@ -24,6 +24,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake()
     {
         bgColor = bgImage.color;
+        if(HasItem())
+            SetItem(GetItem());
     }
 
     #endregion

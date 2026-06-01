@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
+  m_Name: Whiskey
+  m_EditorClassIdentifier: 
+  ID: whiskey_bottle
+  DisplayName: Whiskey
+  Description: '"Rye Whiskey! Rye Whiskey! Rye Whiskey!" I cry! I you don''t give
+    me my whiskey I surely will die!'
+  WorldPrefab: {fileID: 637830887983861573, guid: e27a625ea989b8941941fd82a36e057c, type: 3}
+  HandPrefab: {fileID: 6308824759709530594, guid: 2c6b51eeb834a8f46b05f02f4363a70d, type: 3}
+  StackSize: 16
+  Durability: 0
+  ImageTexture: {fileID: 2800000, guid: b46936552d9b3cf49bc7cc3a72bfcf30, type: 3}
+  UVRect:
+    serializedVersion: 2
+    x: 0.1
+    y: 0
+    width: 0.1
+    height: 0.1

@@ -39,7 +39,7 @@ public class BuildItem : MonoBehaviour
     {
         if(!buildingSystem.PlaceStructure(structureSO))
             return;
-        //InventorySystem.Instance.ClearSelectedSlot();
+        InventorySystem.Instance.ConsumeSelectedItem();
     }
 
     private void OnDestroy()

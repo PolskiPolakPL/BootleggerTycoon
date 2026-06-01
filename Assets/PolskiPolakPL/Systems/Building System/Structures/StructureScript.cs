@@ -4,9 +4,10 @@ using UnityEngine;
 public class StructureScript : MonoBehaviour, IPickable
 {
     public StructureSO StructureSO;
+    [field: SerializeField] public ItemData itemData {  get; private set; }
     Outline outline;
 
-    void Start()
+    private void Awake()
     {
         outline = GetComponent<Outline>();
         DisableOutline();

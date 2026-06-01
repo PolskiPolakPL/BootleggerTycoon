@@ -3,7 +3,6 @@ using UnityEngine;
 public class BoxTool : MonoBehaviour
 {
     BuildingSystem buildingSystem;
-    [SerializeField] GameObject boxPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +16,13 @@ public class BoxTool : MonoBehaviour
             StoreStructure(buildingSystem.SelectedStructure);
     }
 
-    void StoreStructure(StructureScript selectedStructure)
+    void StoreStructure(StructureScript selectedStruct)
     {
-        if (!selectedStructure)
+        if (!selectedStruct)
             return;
-        Transform selectedT = selectedStructure.transform;
-        GameObject boxGO = Instantiate(boxPrefab, selectedT.position + Vector3.up, selectedT.rotation);
-        //boxGO.GetComponent<ItemScript>().itemData = selectedStructure.StructureSO.itemData;
-        Destroy(selectedStructure.gameObject);
+        Transform selectedT = selectedStruct.transform;
+        GameObject boxGO = Instantiate(selectedStruct.itemData.WorldPrefab, selectedT.position + Vector3.up, selectedT.rotation);
+        Destroy(selectedStruct.gameObject);
     }
     private void OnDestroy()
     {

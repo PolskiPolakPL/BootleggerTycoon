@@ -13,17 +13,15 @@ public class Interactable : MonoBehaviour
     Outline outline;
     public string message;
 
+    void Awake()
+    {
+        outline = GetComponent<Outline>();
+        DisableOutline();
+    }
 
     public void Interact()
     {
         OnInteraction?.Invoke();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        outline = GetComponent<Outline>();
-        DisableOutline();
     }
 
     public void DisableOutline()

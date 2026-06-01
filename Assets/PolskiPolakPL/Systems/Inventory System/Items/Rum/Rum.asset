@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441338480d11824fb1c2357e55b07f6, type: 3}
+  m_Name: Rum
+  m_EditorClassIdentifier: 
+  ID: rum_bottle
+  DisplayName: Rum
+  Description: A bottle full of rum.
+  WorldPrefab: {fileID: 637830887983861573, guid: 537fa77bb6f358e4ba9625aef9ea6c1c, type: 3}
+  HandPrefab: {fileID: 6308824759709530594, guid: 2965f8a0af2d23646ae3f58c67a5f38f, type: 3}
+  StackSize: 16
+  Durability: 0
+  ImageTexture: {fileID: 2800000, guid: b46936552d9b3cf49bc7cc3a72bfcf30, type: 3}
+  UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0.1
+    height: 0.1
